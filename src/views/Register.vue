@@ -13,6 +13,7 @@
         </div>
         <div class="pa-5 teal" >
           <h2 class="text-center ma-5 white--text">Register</h2>
+          
           <div>
             <v-text-field
               v-model="form.name"
@@ -44,6 +45,23 @@
                 dense
                 type="error"
                 v-for="error in errors.email" 
+                :key="error">
+                {{error}}
+                </v-alert>
+            </div>
+            <div>
+            <v-text-field
+              v-model="form.phone"
+              label="Phone"
+              solo
+              rounded
+              dense
+              >
+            </v-text-field>
+                <v-alert
+                dense
+                type="error"
+                v-for="error in errors.phone" 
                 :key="error">
                 {{error}}
                 </v-alert>
@@ -126,13 +144,13 @@ export default {
   },
   computed:{
       loading(){
-        return this.$store.state.auth.loading            
+        return this.$store.state.auth.profile.loading            
         },
       errors(){
-        return this.$store.state.auth.errors;
+        return this.$store.state.auth.profile.error;
       },
       form(){
-        return this.$store.state.auth.form;
+        return this.$store.state.auth.profile.form;
       },
   },
   methods:{

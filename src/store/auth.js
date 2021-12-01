@@ -2,72 +2,59 @@ import axios from 'axios'
 import router from '../router'
 export default{
     state:{
-        user:{},
-        users:{},
-        profile:{},
-        form:{},
-        role:{},
-        errors:{},
+        profile:{
+          data:{},
+          error:[],
+          form:{}
+        },
         loading:false
-
-    },
-    getters:{
-        profile(state){
-            return state.profile;
-        }
     },
     mutations:{
-        setForm(state,set){
-            state.form=set
+        setForm(state,data){
+            state.profile.form=data
         },
-        setUser(state,user){
-            state.user=user        
+        setData(state,data){
+            state.profile.data=data        
         },
-        setRole(state,role){
-            state.role=role        
-        },
-        setProfile(state,profile){
-            state.profile=profile        
-        },
-        setErrors(state,errors){
-            state.errors=errors        
+        setErrors(state,data){
+            state.profile.error=data        
         },
         setLoading(state,set){
             state.loading=set
         },
     },
     actions:{
-        async profile({commit}){
-            commit('setLoading',true)
-            try{
-                let response = await axios.get('/api/profile',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
-                if (response.status == 200) {
-                    commit('setProfile',response.data)
-                    commit('setLoading',false)
-                }
-            }catch(errors){
-                commit('setLoading',false)
-            }
-        },       
         async login({commit},data) {
             commit('setLoading',true)
             try {
-              let response = await axios.post("/api/login", data.form);
+              let response = await axios.post("/api/login",data);
               if (response.status == 200) {
-                commit('setProfile',response.data.user)
+                commit('setData',response.data.user)
                 localStorage.setItem("token", response.data.token)
                 commit('setLoading',false)
-                return router.push({ name: 'direct' });
+                let role = response.data.user.roles
+                if (role.length > 0) {
+                  role.filter(role => {
+                      if (role.name == 'admin') {
+                          return router.push('/admin');
+                      }else{
+                          return router.push('/');
+                      }
+                  })
+                }else{
+                  return router.push('/')
+                }
+                
               }
-            } catch (error) {
-                commit('setErrors',error.response.data.errors)
+            } catch (errors) {
+                commit('setErrors',errors.response.data.errors)
                 commit('setLoading',false)
             }
         },
         async register({commit},data){
             commit('setLoading',true)
             try {
-              let response = await axios.post('/api/register',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}});
+              let response = await axios.post('/api/register',data);
               if (response.status==200){
                 alert('Registrasi Berhasil')
                 commit('setForm',{})
@@ -87,97 +74,60 @@ export default{
             let response = await axios.get('/api/logout',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}});
             if (response.status == 200) {
                 localStorage.removeItem("token")
-                commit('setProfile',{})
+                commit('setData',{})
                 commit('setLoading',false)
                 return router.push({ name: 'login' })                
             }
           }catch (errors) {
             commit('setErrors',errors.response.data.errors)
             commit('setLoading',false)
-          }
+        }
         },
-        async direct({commit}){
+        async profile({commit}){
             commit('setLoading',true)
             try{
                 let response = await axios.get('/api/profile',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                    let role = response.data.user.role_id
-                    if (role=='1') {
-                        commit('setLoading',false)
-                        return router.push({ name: 'admin' });
-                    }else if(role=='2'){
-                        commit('setLoading',false)
-                        return router.push({ name: 'courier' });
-                    }else{
-                        commit('setLoading',false)
-                        return router.push('/');
-
-                    }
+                    commit('setData',response.data.profile)
+                    commit('setLoading',false)
                 }
             }catch(errors){
                 commit('setLoading',false)
                 return router.push('/login');
             }
-      
-          },
-          async getRole({commit}){
+        },
+        async editProfile({commit},data){
             commit('setLoading',true)
-            try {
-              let response = await axios.get('/api/roles',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}});
-              if (response.status==200){
-                commit('setRole',response.data.role)
+            try{
+                let response = await axios.put('/api/profile',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                    commit('setData',response.data.profile)
+                    commit('setLoading',false)
+                    commit('setErrors',{})
+                    alert('Data berhasil disimpan')
+                }
+            }catch(errors){
+              console.log(errors.response.data)
+                commit('setErrors',errors.response.data.errors)
                 commit('setLoading',false)
-
-              }
-            } catch (errors) {
-              commit('setErrors',errors.response.data.errors)
-              commit('setLoading',false)
             }
-      
-          },
-          async saveRole({commit},data){
+        }, 
+        async editPassword({commit},data){
             commit('setLoading',true)
-            try {
-              let response = await axios.put('/api/role/'+data.id+'/edit',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}});
-              if (response.status==200){
-                commit('setErrors',{})
+            try{
+                let response = await axios.put('/api/profile/password',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                    commit('setData',response.data.profile)
+                    commit('setLoading',false)
+                    commit('setForm',{})
+                    commit('setErrors',{})
+                    alert('Password berhasil diganti')
+                }
+            }catch(errors){
+                commit('setErrors',errors.response.data.errors)
                 commit('setLoading',false)
-                alert('data berhasil di ubah!')
-              }
-            } catch (errors) {
-              commit('setErrors',errors.response.data.errors)
-              commit('setLoading',false)
             }
+        }, 
       
-          },
-          async createRole({commit},data){
-            commit('setLoading',true)
-            try {
-              let response = await axios.post('/api/role/create',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}});
-              if (response.status==200){
-                commit('setErrors',{})
-                commit('setForm',{})
-                commit('setLoading',false)
-              }
-            } catch (errors) {
-              commit('setErrors',errors.response.data.errors)
-              commit('setLoading',false)
-            }
-      
-          },
-          async frist({commit}){
-            commit('setLoading',true)
-            try {
-              let response = await axios.get('/api/setfrist')
-              if (response.status==200){
-                commit('setLoading',false)
-              }
-            } catch (errors) {
-              commit('setLoading',false)
-            }
-      
-          },
-
-
-    },
+    }
 }

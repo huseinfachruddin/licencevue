@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './auth'
-import content from './content'
-import category from './category'
+import user from './user'
+import role from './role'
+import product from './product'
+import licence from './licence'
 
 
 
@@ -20,8 +22,9 @@ export default new Vuex.Store({
     },
     modules:{
         auth,
-        content,
-        category
-
+        user,
+        role,
+        product,
+        licence,
     }
 })

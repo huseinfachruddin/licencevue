@@ -1,0 +1,54 @@
+import axios from 'axios'
+export default{
+    state:{
+        user:{
+          data:{},
+          error:[],
+          form:{}
+        },
+        loading:false
+    },
+    mutations:{
+        setForm(state,data){
+            state.user.form=data
+        },
+        setData(state,data){
+            state.user.data=data        
+        },
+        setErrors(state,data){
+            state.user.error=data        
+        },
+        setLoading(state,set){
+            state.loading=set
+        },
+    },
+    actions:{
+        async user({commit},data){
+            commit('setLoading',true)
+            try{
+                let response = await axios.get('/api/user?page='+data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                    commit('setData',response.data.user)
+                    commit('setLoading',false)
+                }
+            }catch(errors){
+                commit('setLoading',false)
+            }
+        },
+        async editUser({commit},data){
+            commit('setLoading',true)
+            try{
+                let response = await axios.put('/api/user/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                    commit('setData',response.data.user)
+                    commit('setLoading',false)
+                    alert('Data berhasil diubah')
+                }
+            }catch(errors){
+                commit('setErrors',errors.response.data.errors)
+                commit('setLoading',false)
+            }
+        }, 
+      
+    }
+}

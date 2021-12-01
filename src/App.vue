@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <Navbar/>
+    <Loading/>
+    <Navbar v-if="this.$router.currentRoute.path!=='/register' && this.$router.currentRoute.path!=='/login'"/>
     <v-container fluid class="bg" >
           <router-view temporary/>
     </v-container>
@@ -24,10 +25,12 @@ router-link a{
 
 <script>
 import Navbar from './components/Navbar'
+import Loading from './components/Loading'
 
 export default {
   components:{
     Navbar,
+    Loading,
   }
 
 };

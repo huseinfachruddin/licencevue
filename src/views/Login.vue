@@ -16,15 +16,14 @@
           <div>
             <v-alert
             dense
-            outlined
             type="error"
             v-if="errors.auth"
             >
             {{errors.auth}}
             </v-alert>
             <v-text-field
-              v-model="form.email"
-              label="Email"
+              v-model="form.name"
+              label="Username"
               solo
               rounded
               dense
@@ -34,7 +33,7 @@
                 <v-alert
                 dense
                 type="error"
-                v-for="error in errors.email" 
+                v-for="error in errors.name" 
                 :key="error">
                 {{error}}
                 </v-alert>
@@ -76,6 +75,9 @@
             Login
             </v-btn>
             </div>
+            <router-link to="/register" style="text-decoration: none;">
+                <p class="ma-5 white--text">Buat akun baru-></p>
+            </router-link>
         </div>
         <div class="relative">
           <div class="custom-shape-divider-top-1614916722">
@@ -106,15 +108,15 @@ export default {
         return this.$store.state.auth.loading            
         },
       errors(){
-        return this.$store.state.auth.errors;
+        return this.$store.state.auth.profile.error;
       },
       form(){
-        return this.$store.state.auth.form;
+        return this.$store.state.auth.profile.form;
       },
     },
     methods: {
       login(form){
-        return this.$store.dispatch('login',{form})
+        return this.$store.dispatch('login',form)
       },
     },
     mounted() {
