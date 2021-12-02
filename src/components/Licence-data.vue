@@ -2,7 +2,7 @@
 <div>
   <v-container>
   <v-row>
-    <v-col cols="12" md="8">
+    <v-col cols="12" md="9">
       <v-card
       class="overflow-hidden"
       color=""
@@ -32,7 +32,7 @@
       <v-card-text>
       </v-card-text>
       <v-divider></v-divider>
-        <v-simple-table>
+        <v-simple-table dense>
             <thead>
               <tr>
                 <th class="text-left">
@@ -68,7 +68,8 @@
                 <td v-if="data">{{data.due}}</td>
                 <td>      
                     <v-icon color="blue"
-                      class="ma-1">
+                      class="ma-1"
+                      href="#domain">
                       mdi-web
                     </v-icon> 
                     <v-icon color="blue"
@@ -95,10 +96,11 @@
               </div>
     </v-card>
     </v-col>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="3">
       <v-card
       class="overflow-hidden"
       v-if="domain"
+      id="domain"
     >
       <v-toolbar
         flat
@@ -106,14 +108,14 @@
       >
         <v-icon>mdi-card</v-icon>
         <v-toolbar-title class="font-weight-light">
-          Data Domain terhubung
+          Domain terhubung
         </v-toolbar-title>
         <v-spacer></v-spacer>  
       </v-toolbar>
       <v-card-text>
       </v-card-text>
       <v-divider></v-divider>
-        <v-simple-table>
+        <v-simple-table dense>
             <thead>
               <tr>
                 <th class="text-left">
@@ -189,7 +191,6 @@
         ></v-text-field>
           <v-menu
             ref="menu"
-            v-model="menu"
             :close-on-content-click="true"
             transition="scale-transition"
             offset-y
@@ -210,7 +211,6 @@
             </template>
             <v-date-picker
               v-model="edit.due"
-              @change="save"
             ></v-date-picker>
           </v-menu>
       </v-card-text>

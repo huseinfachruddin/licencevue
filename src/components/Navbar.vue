@@ -121,8 +121,8 @@ import axios from 'axios'
                 let response = await axios.get('/api/profile',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.profile=response.data.profile
-                  this.role=response.data.profile.roles.map(role=>{return role.name})
                   this.login=true
+                  this.role=response.data.profile.roles.map(role=>{return role.name})
                 }
             }catch(errors){
               console.log(errors)
