@@ -16,10 +16,10 @@
           Data User
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <router-link to="/role" style="text-decoration: none;" >
                   <v-btn
                     color="primary"
                     small
-                    @click="editRole(edit)"
                   >
                     <v-icon color="white"
                       class="ma-1" 
@@ -27,6 +27,7 @@
                     </v-icon>
                     Data Role
                   </v-btn>
+          </router-link>
       </v-toolbar>
       <v-divider></v-divider>
         <v-simple-table>

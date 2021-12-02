@@ -15,7 +15,6 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    font-family: "Georgia", "Courier New", monospace;
     height: 100%;
   }
 router-link a{

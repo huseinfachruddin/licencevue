@@ -27,10 +27,10 @@
         <router-link to="/profile" style="text-decoration: none;" >
         <v-list-item-content >
           <v-list-item-title class="text-h6">
-            {{profile.data.name}}
+            {{profile.name}}
           </v-list-item-title>
           <v-list-item-subtitle>
-            {{profile.data.email}}
+            {{profile.email}}
           </v-list-item-subtitle>
         </v-list-item-content>
         </router-link>
@@ -88,27 +88,36 @@
 
 
 <script>
+import axios from 'axios'
+
   export default {
     data: () => ({
       drawer: false,
       group: null,
-      role:''
+      role:null,
+      profile:{}
     }),
     computed:{
-      profile(){
-        return this.$store.state.auth.profile.data       
-      },
+
     },
     methods:{
       logout(){
         return this.$store.dispatch('logout')
+      },
+      async getProfile(){
+            try{
+                let response = await axios.get('/api/profile',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                  this.profile=response.data.profile
+                  this.role=response.data.profile.roles.map(role=>{return role.name})
+                }
+            }catch(errors){
+              console.log(errors)
+            }
       }
     },
-    async mounted() {
-        await this.$store.dispatch('profile')
-        this.$store.state.auth.profile.data.roles.filter(role=>{
-        this.role =role.name
-        })
+    mounted() {
+        this.getProfile()
     },
   }
 </script>

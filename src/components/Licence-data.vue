@@ -2,7 +2,7 @@
 <div>
   <v-container>
   <v-row>
-    <v-col>
+    <v-col cols="12" md="8">
       <v-card
       class="overflow-hidden"
       color=""
@@ -59,6 +59,7 @@
               <tr
                 v-for="data,index in data.data"
                 :key="index"
+                @click="domain=data.domain,domain.licence=data.licence"
               >
                 <td v-if="data">{{data.user.name}}</td>
                 <td v-if="data">{{data.product.name}}({{data.product.code}})</td>
@@ -90,6 +91,53 @@
               </div>
     </v-card>
     </v-col>
+        <v-col cols="12" md="4">
+      <v-card
+      class="overflow-hidden"
+      v-if="domain"
+    >
+      <v-toolbar
+        flat
+        color="orange lighten-2"
+      >
+        <v-icon>mdi-card</v-icon>
+        <v-toolbar-title class="font-weight-light">
+          Data Domain terhubung
+        </v-toolbar-title>
+        <v-spacer></v-spacer>  
+      </v-toolbar>
+      <v-card-text>
+      </v-card-text>
+      <v-divider></v-divider>
+        <v-simple-table>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  Domain
+                </th>
+                <th class="text-left">
+                  Aksi
+                </th>
+              </tr>
+            </thead>
+            <tbody v-if="!loading">
+              <tr
+                v-for="data,index in domain"
+                :key="index"
+              >
+                <td v-if="data">{{data.domain}}</td>
+                <td>      
+                    <v-icon color="red"
+                      class="ma-1" 
+                      @click="deleteDomain(data)">
+                      mdi-delete
+                    </v-icon> 
+                </td>
+              </tr>
+            </tbody>
+        </v-simple-table>
+    </v-card>
+    </v-col>
   <div class="text-center">
     <v-dialog
       v-model="dialog"
@@ -106,13 +154,6 @@
         >
         {{error}}
         </v-alert>
-        <v-text-field
-          small
-          dense
-          outlined
-          v-model="edit.name"
-          label="Nama Product"
-        ></v-text-field>
         <v-select
           small
           dense
@@ -138,16 +179,36 @@
           small
           dense
           outlined
+          type="number"
           v-model="edit.max_domain"
           label="maximal domain.."
         ></v-text-field>
-        <v-text-field
-          small
-          dense
-          outlined
-          v-model="edit.due"
-          label="Kadaluarsa.."
-        ></v-text-field>
+          <v-menu
+            ref="menu"
+            v-model="menu"
+            :close-on-content-click="true"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                small
+                dense
+                outlined
+                v-model="edit.due"
+                label="Kadaluarsa"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="edit.due"
+              @change="save"
+            ></v-date-picker>
+          </v-menu>
       </v-card-text>
 
         <v-divider></v-divider>
@@ -198,7 +259,8 @@ import axios from 'axios'
         dialog: false,
         edit: false,
         product:{},
-        user:{}
+        user:{},
+        domain:false
       }
     },
     computed:{
@@ -221,6 +283,7 @@ import axios from 'axios'
       },
       async editLicence(data){
         await this.$store.dispatch('editLicence',data)
+        this.getLicence(1)
       },
       async createLicence(data){
         await this.$store.dispatch('createLicence',data)
@@ -249,9 +312,23 @@ import axios from 'axios'
                   this.user=response.data.user.data
                 }
             }catch(errors){
-                this.errors=errors.response.data.erorrs
+                console.log(errors)
             }
-      }
+      },
+      async deleteDomain(data){
+            try{
+                if (confirm("Yakin Akan menghapus lisensi")) {
+                  let response = await axios.delete('/api/domain/'+data.id)
+                  let domain = await axios.get('/api/domain',data)
+                  if (response.status == 200) {
+                    this.domain=domain.data.domain
+                  }
+                }
+
+            }catch(errors){
+                console.log(errors)
+            }
+      },
     },
     mounted() {
       this.getLicence(1)

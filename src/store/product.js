@@ -43,7 +43,7 @@ export default{
                 if (response.status == 200) {
                     commit('setLoading',false)
                     alert('Data berhasil disimpan')
-
+                    commit('setErrors',{})
                 }
             }catch(errors){
                 commit('setErrors',errors.response.data.errors)
@@ -55,6 +55,7 @@ export default{
             try{
                 let response = await axios.put('/api/product/'+data.id,data)
                 if (response.status == 200) {
+                    commit('setErrors',{})
                     commit('setLoading',false)
                     alert('Data berhasil diubah')
 

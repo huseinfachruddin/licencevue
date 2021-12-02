@@ -43,6 +43,7 @@ export default{
                 if (response.status == 200) {
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
+                    commit('setErrors',{})
                     alert('Berhasil menyimpan lisensi')
 
                 }
@@ -58,6 +59,7 @@ export default{
                 if (response.status == 200) {
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
+                    commit('setErrors',{})
                     alert('Berhasil menyimpan lisensi')
                 }
             }catch(errors){
@@ -70,6 +72,7 @@ export default{
             try{
                 let response = await axios.delete('/api/licence/'+data.id)
                 if (response.status == 200) {
+                    commit('setErrors',{})
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
                 }
