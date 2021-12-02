@@ -8,6 +8,23 @@
       <h3 class="ma-1 black--text">LISENSI</h3>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+          <v-btn
+              v-if="login"
+              @click="logout()"
+              color="error"
+              small
+              >
+                logout
+          </v-btn>
+          <router-link to="/login" style="text-decoration: none;" >
+          <v-btn
+              v-if="!login"
+              color="info"
+              small
+              >
+                Login
+          </v-btn>
+          </router-link>
     </v-toolbar>
       <v-navigation-drawer
       v-model="drawer"
@@ -70,13 +87,7 @@
             </router-link>
           </div>
         </v-list-item-group>
-          <v-btn
-              @click="logout()"
-              color="error"
-              small
-              >
-                logout
-          </v-btn>
+
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -95,7 +106,8 @@ import axios from 'axios'
       drawer: false,
       group: null,
       role:null,
-      profile:{}
+      profile:{},
+      login:false
     }),
     computed:{
 
@@ -110,9 +122,11 @@ import axios from 'axios'
                 if (response.status == 200) {
                   this.profile=response.data.profile
                   this.role=response.data.profile.roles.map(role=>{return role.name})
+                  this.login=true
                 }
             }catch(errors){
               console.log(errors)
+              this.login=false
             }
       }
     },

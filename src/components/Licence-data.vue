@@ -68,6 +68,10 @@
                 <td v-if="data">{{data.due}}</td>
                 <td>      
                     <v-icon color="blue"
+                      class="ma-1">
+                      mdi-web
+                    </v-icon> 
+                    <v-icon color="blue"
                       class="ma-1" 
                       @click="dialog =true,edit=data">
                       mdi-pencil
