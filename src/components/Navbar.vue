@@ -42,7 +42,7 @@
         >
       <v-list-item class="yellow">
         <router-link to="/profile" style="text-decoration: none;" >
-        <v-list-item-content >
+        <v-list-item-content v-if="profile.name">
           <v-list-item-title class="text-h6">
             {{profile.name}}
           </v-list-item-title>
@@ -50,19 +50,36 @@
             {{profile.email}}
           </v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-content v-if="!profile.name">
+          <v-list-item-title class="text-h6">
+            Menu
+          </v-list-item-title>
+        </v-list-item-content>
         </router-link>
       </v-list-item>
 
       <v-divider></v-divider>
+          <div v-if="role!='admin'">
           <router-link to="/" style="text-decoration: none;" >
               <v-list-item>
                 <v-list-item-title >Home</v-list-item-title>
-              </v-list-item> 
+              </v-list-item>
           </router-link>
+          <router-link to="/user/produk" style="text-decoration: none;" >
+              <v-list-item>
+                <v-list-item-title >Produk kami</v-list-item-title>
+              </v-list-item>
+          </router-link>
+          <router-link to="/user/licence" style="text-decoration: none;" >
+              <v-list-item>
+                <v-list-item-title >Lisensi Anda</v-list-item-title>
+              </v-list-item>
+          </router-link>
+          </div>
           <div v-if="role=='admin'">
             <router-link to="/admin" style="text-decoration: none;" >
                 <v-list-item>
-                  <v-list-item-title >Admin</v-list-item-title>
+                  <v-list-item-title >Dasboard</v-list-item-title>
                 </v-list-item>
             </router-link>
             <router-link to="/user" style="text-decoration: none;" >

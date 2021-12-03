@@ -15,6 +15,8 @@ import Role from '../views/Admin/Role.vue'
 import Product from '../views/Admin/Product.vue'
 import Licence from '../views/Admin/Licence.vue'
 
+import userLicence from '../views/User/userLicence.vue'
+
 
 Vue.use(vuerouter)
 
@@ -34,14 +36,6 @@ const routes = [
     component:Register,
     meta:{
       title:'Register'
-    }
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component:Profile,
-    meta:{
-      title:'Profile Anda'
     }
   },
   {
@@ -100,7 +94,24 @@ const routes = [
       auth:true,
       permision:'admin',
       title:'Data licence'
-  }
+  },
+  
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component:Profile,
+    meta:{
+      title:'Profile Anda'
+    }
+  },
+  {
+    path: '/user/licence',
+    name: 'user-licence',
+    component:userLicence,
+    meta:{
+      title:'lisensi Anda'
+    }
   },
     { path: '/404', component: Home },  
     { path: '*', redirect: '/404' },

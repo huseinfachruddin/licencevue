@@ -26,7 +26,7 @@ export default{
         async licence({commit},data){
             commit('setLoading',true)
             try{
-                let response = await axios.get('/api/licence?page='+data,data)
+                let response = await axios.get('/api/licence?page='+data,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
@@ -39,7 +39,7 @@ export default{
         async createLicence({commit},data){
             commit('setLoading',true)
             try{
-                let response = await axios.post('/api/licence',data)
+                let response = await axios.post('/api/licence',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
@@ -55,7 +55,7 @@ export default{
         async editLicence({commit},data){
             commit('setLoading',true)
             try{
-                let response = await axios.put('/api/licence/'+data.id,data)
+                let response = await axios.put('/api/licence/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
@@ -70,7 +70,7 @@ export default{
         async deleteLicence({commit},data){
             commit('setLoading',true)
             try{
-                let response = await axios.delete('/api/licence/'+data.id)
+                let response = await axios.delete('/api/licence/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     commit('setErrors',{})
                     commit('setData',response.data.licence)
