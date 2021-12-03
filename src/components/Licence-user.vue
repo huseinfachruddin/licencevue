@@ -16,6 +16,18 @@
           Data Lisensi Anda
         </v-toolbar-title>
         <v-spacer></v-spacer>
+        <router-link to="" style="text-decoration: none;" >
+                  <v-btn
+                    color="info"
+                    small
+                  >
+                    <v-icon color="white"
+                      class="ma-1" >
+                      mdi-cart
+                    </v-icon>
+                    Beli Lisensi
+                  </v-btn>
+        </router-link>
       </v-toolbar>
       <v-card-text>
       </v-card-text>
@@ -65,7 +77,7 @@
                 <v-pagination
                   v-model="data.current_page"
                   :length="data.last_page"
-                  @input="getLicence(data)"
+                  @input="getLicence(data.current_page)"
                 ></v-pagination>
               </div>
     </v-card>
@@ -118,80 +130,6 @@
         </v-simple-table>
     </v-card>
     </v-col>
-  <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      width="500"
-    >
-      <v-card>
-        <v-card-title class="text-h5 orange lighten-2">
-          Product
-        </v-card-title>
-      <v-card-text class="pa-3">
-        <v-alert
-          type="error"
-          v-for="[error] in errors" :key="error"
-        >
-        {{error}}
-        </v-alert>
-        <v-select
-          small
-          dense
-          :items="user"
-          item-text="name"
-          item-value="id"
-          label="Pilih user ..."
-          v-model="edit.user_id"
-          outlined
-        ></v-select>
-
-        <v-select
-          small
-          dense
-          :items="product"
-          item-text="name"
-          item-value="id"
-          label="Pilih product ..."
-          v-model="edit.product_id"
-          outlined
-        ></v-select>
-        <v-text-field
-          small
-          dense
-          outlined
-          type="number"
-          v-model="edit.max_domain"
-          label="maximal domain.."
-        ></v-text-field>
-          <v-menu
-            ref="menu"
-            :close-on-content-click="true"
-            transition="scale-transition"
-            offset-y
-            min-width="auto"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-                small
-                dense
-                outlined
-                v-model="edit.due"
-                label="Kadaluarsa"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-              ></v-text-field>
-            </template>
-            <v-date-picker
-              v-model="edit.due"
-            ></v-date-picker>
-          </v-menu>
-      </v-card-text>
-        <v-divider></v-divider>
-      </v-card>
-    </v-dialog>
-  </div>
   </v-row>
   
   </v-container>
@@ -229,7 +167,7 @@ import axios from 'axios'
     },
     methods: {
       async getLicence(data){
-        await this.$store.dispatch('licence',data.current_page);
+        await this.$store.dispatch('licence',data);
       },
       async editLicence(data){
         await this.$store.dispatch('editLicence',data)
@@ -244,26 +182,6 @@ import axios from 'axios'
           await this.$store.dispatch('deleteLicence',data)
           this.getLicence(1)
         }
-      },
-      async getProduct(){
-            try{
-                let response = await axios.get('/api/product')
-                if (response.status == 200) {
-                  this.product=response.data.product.data
-                }
-            }catch(errors){
-                this.errors=errors.response.data.erorrs
-            }
-      },
-      async getUser(){
-            try{
-                let response = await axios.get('/api/user',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
-                if (response.status == 200) {
-                  this.user=response.data.user.data
-                }
-            }catch(errors){
-                console.log(errors)
-            }
       },
       async deleteDomain(data){
             try{
@@ -282,8 +200,6 @@ import axios from 'axios'
     },
     mounted() {
       this.getLicence(1)
-      this.getProduct()
-      this.getUser()
     }
   }
 </script>

@@ -3,7 +3,8 @@
     <Loading/>
     <Navbar v-if="this.$router.currentRoute.path!=='/register' && this.$router.currentRoute.path!=='/login'"/>
     <v-container fluid class="bg" >
-          <router-view temporary/>
+
+          <router-view temporary/>  
     </v-container>
   </v-app>
 </template>

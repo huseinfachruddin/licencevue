@@ -1,11 +1,11 @@
 <template>
 <div id="navbar">
     <v-toolbar 
-    color="yellow accent-4">
-    <v-app-bar-nav-icon @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
+    color="orange lighten-2">
+    <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-toolbar-title class="d-flex justify-center">
-      <h3 class="ma-1 black--text">LISENSI</h3>
+      <h3 class="ma-1 white--text">RUAS DIGITAL LISENSI</h3>
       </v-toolbar-title>
       <v-spacer></v-spacer>
           <v-btn
