@@ -1,10 +1,10 @@
 <template>
   <v-app>
+      <canvas class="background"></canvas>
     <Loading/>
     <Navbar v-if="this.$router.currentRoute.path!=='/register' && this.$router.currentRoute.path!=='/login'"/>
     <v-container fluid class="bg" >
-
-          <router-view temporary/>  
+        <router-view temporary/>  
     </v-container>
   </v-app>
 </template>
@@ -17,7 +17,13 @@
     -o-background-size: cover;
     background-size: cover;
     height: 100%;
+
   }
+.background{
+    position: absolute;
+    display: block;
+    z-index: 0;
+}
 router-link a{
     text-decoration: none ;
 }
@@ -26,12 +32,20 @@ router-link a{
 <script>
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
+import Particles from 'particlesjs';
 
 export default {
   components:{
     Navbar,
     Loading,
+  },
+  mounted(){
+      Particles.init({
+        selector: '.background',
+        maxParticles: 50,
+        connectParticles:true,
+        color:'#ffffff'
+      });
   }
-
 };
 </script>

@@ -287,23 +287,23 @@ import axios from 'axios'
       },
       async editLicence(data){
         await this.$store.dispatch('editLicence',data)
-        this.getLicence(1)
+        this.getLicence(this.data.current_page)
       },
       async createLicence(data){
         await this.$store.dispatch('createLicence',data)
-        this.getLicence(1)
+        this.getLicence(this.data.current_page)
       },
       async deleteLicence(data){
         if (confirm("Yakin Akan menghapus lisensi")) {
           await this.$store.dispatch('deleteLicence',data)
-          this.getLicence(1)
+          this.getLicence(this.data.current_page)
         }
       },
       async getProduct(){
             try{
-                let response = await axios.get('/api/product')
+                let response = await axios.get('/api/product?all='+true)
                 if (response.status == 200) {
-                  this.product=response.data.product.data
+                  this.product=response.data.product
                 }
             }catch(errors){
                 this.errors=errors.response.data.erorrs
@@ -311,9 +311,9 @@ import axios from 'axios'
       },
       async getUser(){
             try{
-                let response = await axios.get('/api/user',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/user?all='+true,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                  this.user=response.data.user.data
+                  this.user=response.data.user
                 }
             }catch(errors){
                 console.log(errors)

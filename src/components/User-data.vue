@@ -211,7 +211,7 @@ import axios from 'axios'
       },
       async editUser(data){
         await this.$store.dispatch('editUser',data);
-        await this.getUser(1)
+        await this.getUser(this.data.current_page)
       }
     },
     mounted() {

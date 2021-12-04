@@ -16,6 +16,7 @@ import Product from '../views/Admin/Product.vue'
 import Licence from '../views/Admin/Licence.vue'
 
 import userLicence from '../views/User/userLicence.vue'
+import userProduct from '../views/User/userProduct.vue'
 
 
 Vue.use(vuerouter)
@@ -111,6 +112,14 @@ const routes = [
     component:userLicence,
     meta:{
       title:'lisensi Anda'
+    }
+  },
+  {
+    path: '/user/product',
+    name: 'user-product',
+    component:userProduct,
+    meta:{
+      title:'Produk kami'
     }
   },
     { path: '/404', component: Home },  

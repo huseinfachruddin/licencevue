@@ -25,7 +25,7 @@
           class="ma-1" 
           mdi-key>
             </v-icon>
-              Tambah Role
+              Tambah Produk Baru
             </v-btn>
         
       </v-toolbar>
@@ -70,7 +70,7 @@
             </tbody>
         </v-simple-table>
                     <v-divider></v-divider>
-              <div >
+              <div>
                 <v-pagination
                   v-model="data.current_page"
                   :length="data.last_page"
@@ -182,16 +182,16 @@
       },
       async editProduct(data){
         await this.$store.dispatch('editProduct',data)
-        this.getProduct(1)
+        this.getProduct(this.data.current_page)
       },
       async createProduct(data){
         await this.$store.dispatch('createProduct',data)
-        this.getProduct(1)
+        this.getProduct(this.data.current_page)
       },
       async deleteProduct(data){
         if (confirm("Yakin Akan menghapus produk")) {
           await this.$store.dispatch('deleteProduct',data)
-          this.getProduct(1)
+          this.getProduct(this.data.current_page)
         }
       }
     },

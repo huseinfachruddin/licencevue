@@ -16,7 +16,7 @@
           Data Lisensi Anda
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <router-link to="" style="text-decoration: none;" >
+        <router-link to="/user/product" style="text-decoration: none;" >
                   <v-btn
                     color="info"
                     small
@@ -77,57 +77,9 @@
                 <v-pagination
                   v-model="data.current_page"
                   :length="data.last_page"
-                  @input="getLicence(data.current_page)"
+                  @input="getLicence(data)"
                 ></v-pagination>
               </div>
-    </v-card>
-    </v-col>
-        <v-col cols="12" md="3">
-      <v-card
-      class="overflow-hidden"
-      v-if="domain"
-      id="domain"
-    >
-      <v-toolbar
-        flat
-        color="orange lighten-2"
-      >
-        <v-icon>mdi-card</v-icon>
-        <v-toolbar-title class="font-weight-light">
-          Domain terhubung
-        </v-toolbar-title>
-        <v-spacer></v-spacer>  
-      </v-toolbar>
-      <v-card-text>
-      </v-card-text>
-      <v-divider></v-divider>
-        <v-simple-table dense>
-            <thead>
-              <tr>
-                <th class="text-left">
-                  Domain
-                </th>
-                <th class="text-left">
-                  Aksi
-                </th>
-              </tr>
-            </thead>
-            <tbody v-if="!loading">
-              <tr
-                v-for="data,index in domain"
-                :key="index"
-              >
-                <td v-if="data">{{data.domain}}</td>
-                <td>      
-                    <v-icon color="red"
-                      class="ma-1" 
-                      @click="deleteDomain(data)">
-                      mdi-delete
-                    </v-icon> 
-                </td>
-              </tr>
-            </tbody>
-        </v-simple-table>
     </v-card>
     </v-col>
   </v-row>
@@ -167,20 +119,12 @@ import axios from 'axios'
     },
     methods: {
       async getLicence(data){
-        await this.$store.dispatch('licence',data);
-      },
-      async editLicence(data){
-        await this.$store.dispatch('editLicence',data)
-        this.getLicence(1)
-      },
-      async createLicence(data){
-        await this.$store.dispatch('createLicence',data)
-        this.getLicence(1)
+        await this.$store.dispatch('licence',data.current_page);
       },
       async deleteLicence(data){
         if (confirm("Yakin Akan menghapus lisensi")) {
           await this.$store.dispatch('deleteLicence',data)
-          this.getLicence(1)
+          this.getLicence(this.data.current_page)
         }
       },
       async deleteDomain(data){

@@ -70,6 +70,7 @@ export default{
             try{
                 let response = await axios.delete('/api/product/'+data.id)
                 if (response.status == 200) {
+                    commit('setErrors',{})
                     commit('setLoading',false)
                     alert('Data berhasil dihapus')
 

@@ -41,7 +41,6 @@ export default{
             try{
                 let response = await axios.post('/api/licence',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                    commit('setData',response.data.licence)
                     commit('setLoading',false)
                     commit('setErrors',{})
                     alert('Berhasil menyimpan lisensi')
@@ -57,7 +56,6 @@ export default{
             try{
                 let response = await axios.put('/api/licence/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                    commit('setData',response.data.licence)
                     commit('setLoading',false)
                     commit('setErrors',{})
                     alert('Berhasil menyimpan lisensi')
@@ -73,7 +71,6 @@ export default{
                 let response = await axios.delete('/api/licence/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     commit('setErrors',{})
-                    commit('setData',response.data.licence)
                     commit('setLoading',false)
                 }
             }catch(errors){

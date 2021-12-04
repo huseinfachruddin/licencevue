@@ -40,7 +40,6 @@ export default{
             try{
                 let response = await axios.put('/api/user/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                    commit('setData',response.data.user)
                     commit('setLoading',false)
                     alert('Data berhasil diubah')
                 }

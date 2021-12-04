@@ -5,26 +5,10 @@
     <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer" ></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <v-toolbar-title class="d-flex justify-center">
-      <h3 class="ma-1 white--text">RUAS DIGITAL LISENSI</h3>
+      <h5 class="ma-1 white--text">RUAS DIGITAL LISENSI</h5>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-          <v-btn
-              v-if="login"
-              @click="logout()"
-              color="error"
-              small
-              >
-                logout
-          </v-btn>
-          <router-link to="/login" style="text-decoration: none;" >
-          <v-btn
-              v-if="!login"
-              color="info"
-              small
-              >
-                Login
-          </v-btn>
-          </router-link>
+
     </v-toolbar>
       <v-navigation-drawer
       v-model="drawer"
@@ -65,7 +49,7 @@
                 <v-list-item-title >Home</v-list-item-title>
               </v-list-item>
           </router-link>
-          <router-link to="/user/produk" style="text-decoration: none;" >
+          <router-link to="/user/product" style="text-decoration: none;" >
               <v-list-item>
                 <v-list-item-title >Produk kami</v-list-item-title>
               </v-list-item>
@@ -103,6 +87,29 @@
                 </v-list-item>
             </router-link>
           </div>
+          <v-list-item>
+            <v-list-item-title >
+              <v-btn
+              v-if="login"
+              @click="logout()"
+              color="error"
+              small
+              >
+                logout
+          </v-btn>
+          <router-link to="/login" style="text-decoration: none;" >
+          <v-btn
+              v-if="!login"
+              color="info"
+              small
+              >
+                Login
+          </v-btn>
+          </router-link>
+          </v-list-item-title>
+                </v-list-item>
+
+
         </v-list-item-group>
 
       </v-list>
