@@ -15,6 +15,7 @@ import Role from '../views/Admin/Role.vue'
 import Product from '../views/Admin/Product.vue'
 import Licence from '../views/Admin/Licence.vue'
 import Package from '../views/Admin/Package.vue'
+import Order from '../views/Admin/Order.vue'
 
 import userLicence from '../views/User/Licence.vue'
 import userProduct from '../views/User/Product.vue'
@@ -109,8 +110,17 @@ const routes = [
       auth:true,
       permision:'admin',
       title:'Data licence'
+    }
   },
-  
+  {
+    path: '/order',
+    name: 'order',
+    component: Order,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data order'
+    },
   },
   {
     path: '/profile',
@@ -208,7 +218,6 @@ router.beforeEach( async (to,from, next) => {
         }else{
           return next('/login')
         }
-        
       }catch (error) {
         return ('/')
       }

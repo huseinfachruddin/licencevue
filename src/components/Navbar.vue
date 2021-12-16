@@ -131,6 +131,14 @@
                   <v-list-item-title >Lisensi</v-list-item-title>
                 </v-list-item>
             </router-link>
+            <router-link to="/order" style="text-decoration: none;" >
+                <v-list-item>
+                  <v-icon>
+                    mdi-cart
+                  </v-icon>
+                  <v-list-item-title >Pesanan</v-list-item-title>
+                </v-list-item>
+            </router-link>
           </div>
           <v-list-item>
             <v-list-item-title >

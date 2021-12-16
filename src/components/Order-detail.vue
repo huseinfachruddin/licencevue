@@ -132,7 +132,7 @@ import axios from 'axios'
                   this.channel=response.data.xendit
                 }
             }catch(errors){
-                console.log(errors)            
+                console.log(errors)
             }
       },
       async payment(form){

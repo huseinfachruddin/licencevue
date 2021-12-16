@@ -123,9 +123,12 @@
             try{
                 let response = await axios.post('/api/cart?package_id='+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                  router.push('/user/cart');
+                    return router.push({ path: '/user/cart'});
                 }
             }catch(errors){
+                if (errors.response.status == 401) {
+                    router.push('/login');
+                }
                 console.log(errors)            
             }
     },
