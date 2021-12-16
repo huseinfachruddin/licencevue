@@ -144,8 +144,7 @@ import axios from 'axios'
             try{
                 let response = await axios.post('/api/xendit/payment',data)
                 if (response.status == 200) {
-                   this.getOrder()
-                    this.getOrder()
+                  this.getOrder()
                 }
             }catch(errors){
                 console.log(errors)            
@@ -154,6 +153,7 @@ import axios from 'axios'
     },
     mounted() {
       this.getOrder()
+      this.getChannel()
     }
   }
 </script>

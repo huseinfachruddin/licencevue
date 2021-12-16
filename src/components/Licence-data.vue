@@ -66,7 +66,7 @@
                 <td v-if="data">{{data.licence}}</td>
                 <td v-if="data">{{data.max_domain}}</td>
                 <td v-if="data">{{data.due}}</td>
-                <td>      
+                <td>
                     <v-icon color="blue"
                       class="ma-1"
                       href="#domain">
