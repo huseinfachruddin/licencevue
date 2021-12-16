@@ -36,6 +36,7 @@
     </v-list-item>
 
     <v-card-actions>
+    <router-link :to="'/user/product/'+data.id" style="text-decoration: none;" >
       <v-btn
         outlined
         solo
@@ -44,6 +45,7 @@
       >
         detail
       </v-btn>
+      </router-link>
     </v-card-actions>
   </v-card>
   </v-row>
@@ -58,19 +60,17 @@
 </div>
 </template>
 <script>
-  export default {
+import axios from 'axios'
+export default {
     data () {
       return {
         success: false,
-        model: null,
         dialog: false,
-        edit: false
+        edit: false,
+        data:{}
       }
     },
     computed:{
-      data(){
-        return this.$store.state.product.product.data;        
-      },
       errors(){
         return this.$store.state.product.product.error;
       },
@@ -83,7 +83,13 @@
     },
     methods: {
       async getProduct(data){
-        await this.$store.dispatch('product',data.current_page);
+            try{
+                let response = await axios.get('/api/product?page='+data)
+                if (response.status == 200) {
+                  this.data=response.data.product
+                }
+            }catch(errors){
+                console.log(errors)            }
       },
     },
     mounted() {

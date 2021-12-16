@@ -7,6 +7,7 @@ import product from './product'
 import licence from './licence'
 
 
+// function sum
 
 Vue.use(Vuex)
 

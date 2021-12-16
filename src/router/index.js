@@ -14,15 +14,19 @@ import Role from '../views/Admin/Role.vue'
 
 import Product from '../views/Admin/Product.vue'
 import Licence from '../views/Admin/Licence.vue'
+import Package from '../views/Admin/Package.vue'
 
-import userLicence from '../views/User/userLicence.vue'
-import userProduct from '../views/User/userProduct.vue'
+import userLicence from '../views/User/Licence.vue'
+import userProduct from '../views/User/Product.vue'
+import userPackage from '../views/User/Package.vue'
+import userOrder from '../views/User/Order.vue'
+import userDetailOrder from '../views/User/Order-detail.vue'
+import userCart from '../views/User/Cart.vue'
 
 
 Vue.use(vuerouter)
 
 const routes = [
-
   {
     path: '/login',
     name: 'login',
@@ -88,6 +92,16 @@ const routes = [
     }
   },
   {
+    path: '/product/:id',
+    name: 'product detail',
+    component: Package,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data Product'
+    }
+  },
+  {
     path: '/licence',
     name: 'licence',
     component: Licence,
@@ -122,6 +136,44 @@ const routes = [
       title:'Produk kami'
     }
   },
+  {
+    path: '/user/product/:id',
+    name: 'detail-product',
+    component:userPackage,
+    meta:{
+      title:'detail product'
+    }
+  },
+  {
+    path: '/user/order',
+    name: 'user-order',
+    component:userOrder,
+    meta:{
+      auth:true,
+      permision:'free',
+      title:'Pesanan Anda'
+    }
+  },
+  {
+    path: '/user/order/:id',
+    name: 'detail-order',
+    component:userDetailOrder,
+    meta:{
+      auth:true,
+      permision:'free',
+      title:'Pesanan Anda'
+    }
+  },
+  {
+    path: '/user/cart',
+    name: 'user-cart',
+    component:userCart,
+    meta:{
+      auth:true,
+      permision:'free',
+      title:'Pesanan Anda'
+    }
+  },
     { path: '/404', component: Home },  
     { path: '*', redirect: '/404' },
 
@@ -138,6 +190,9 @@ const router = new vuerouter({
 router.beforeEach( async (to,from, next) => {
   document.title=to.meta.title;
     if (to.meta.auth == true) {
+      if (to.meta.permision=='free') {
+        return next()
+      }
       try {
         await store.dispatch('profile');
         let role = store.state.auth.profile.data.roles
@@ -147,11 +202,10 @@ router.beforeEach( async (to,from, next) => {
               console.log('masuk')
               return next()
             }else{
-              return next('/login')
+                return next('/login')
             }
         })
         }else{
-          console.log('pindah')
           return next('/login')
         }
         

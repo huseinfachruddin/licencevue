@@ -6,7 +6,6 @@
       color="cyan"
     ></v-progress-linear>
 </div>
-
 </template>
 <style>
 .partikel{

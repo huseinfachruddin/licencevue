@@ -5,12 +5,13 @@ import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
 // https://perpustakaanfisip.herokuapp.com
-axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || 'https://lisensi.ruasdigital.id';
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || 'http://127.0.0.1:8000';
+axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('token');
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.post['withCredentials'] = 'true';
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 // axios.defaults.headers.post['xsrfCookieName'] = '__test=36ef558dea3dbc55f8f8cb825d1d68b5';
 // axios.defaults.headers.common = {
@@ -19,7 +20,7 @@ axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
 // };
 
 let config = {
-  baseURL: process.env.baseURL || process.env.apiUrl || "https://lisensi.ruasdigital.id",
+  baseURL: process.env.baseURL || process.env.apiUrl || "http://127.0.0.1:8000",
   // timeout: 60 * 1000, // Timeout
   withCredentials: true, // Check cross-site Access-Control
 };

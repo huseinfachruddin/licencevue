@@ -49,18 +49,43 @@
           <div v-if="role!='admin'">
           <router-link to="/" style="text-decoration: none;" >
               <v-list-item>
+                  <v-icon>
+                    mdi-home
+                  </v-icon>
                 <v-list-item-title >Home</v-list-item-title>
               </v-list-item>
           </router-link>
           <router-link to="/user/product" style="text-decoration: none;" >
               <v-list-item>
+                  <v-icon>
+                    mdi-apps
+                  </v-icon>
                 <v-list-item-title >Produk kami</v-list-item-title>
               </v-list-item>
           </router-link>
           <div v-if="role!=null">
           <router-link to="/user/licence" style="text-decoration: none;" >
               <v-list-item>
+                  <v-icon>
+                    mdi-certificate
+                  </v-icon>
                 <v-list-item-title >Lisensi Anda</v-list-item-title>
+              </v-list-item>
+          </router-link>
+          <router-link to="/user/cart" style="text-decoration: none;" >
+              <v-list-item>
+                  <v-icon>
+                    mdi-cart
+                  </v-icon>
+                <v-list-item-title >Keranjang anda</v-list-item-title>
+              </v-list-item>
+          </router-link>
+          <router-link to="/user/order" style="text-decoration: none;" >
+              <v-list-item>
+                  <v-icon>
+                    mdi-cart-plus
+                  </v-icon>
+                <v-list-item-title >Pesanan anda</v-list-item-title>
               </v-list-item>
           </router-link>
           </div>

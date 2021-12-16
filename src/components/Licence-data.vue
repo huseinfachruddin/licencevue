@@ -323,8 +323,9 @@ import axios from 'axios'
             try{
                 if (confirm("Yakin Akan menghapus lisensi")) {
                   let response = await axios.delete('/api/domain/'+data.id)
-                  let domain = await axios.get('/api/domain',data)
+                  let domain = await axios.get('/api/domain?licence_id='+data.licence_id)
                   if (response.status == 200) {
+                    this.getLicence(this.data.current_page)
                     this.domain=domain.data.domain
                   }
                 }

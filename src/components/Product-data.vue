@@ -53,8 +53,15 @@
               >
                 <td v-if="data">{{data.name}}</td>
                 <td v-if="data">{{data.code}}</td>
-                <td v-if="data">{{data.desc}}</td>
+                <td v-if="data" class="text-truncate" style="max-width: 500px;">{{data.desc}}</td>
                 <td>      
+                    <router-link :to="'/product/'+data.id" style="text-decoration: none;">
+                    <v-icon color="warning"
+                      class="ma-1" 
+                      >
+                      mdi-cash
+                    </v-icon> 
+                    </router-link>
                     <v-icon color="blue"
                       class="ma-1" 
                       @click="dialog =true,edit=data">
@@ -64,12 +71,12 @@
                       class="ma-1" 
                       @click="deleteProduct(data)">
                       mdi-delete
-                    </v-icon> 
+                    </v-icon>
                 </td>
               </tr>
             </tbody>
         </v-simple-table>
-                    <v-divider></v-divider>
+        <v-divider></v-divider>
               <div>
                 <v-pagination
                   v-model="data.current_page"
@@ -107,12 +114,12 @@
           v-model="edit.code"
           label="Kode Product"
         ></v-text-field>
-        <v-text-field
+        <v-textarea
           small
           outlined
           v-model="edit.desc"
           label="Deskripsi"
-        ></v-text-field>
+        ></v-textarea>
       </v-card-text>
 
         <v-divider></v-divider>

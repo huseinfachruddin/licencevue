@@ -3,9 +3,12 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-parallax
+          <Product/>
+        <!-- <v-parallax
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
         >
+        <v-row>
+        </v-row>
           <v-row
             align="center"
             justify="center"
@@ -32,11 +35,21 @@
               </h4>
             </v-col>
           </v-row>
-        </v-parallax>
+        </v-parallax> -->
       </v-col>
     </v-row>
   </v-container>
 </div>
 </template>
+
+<script>
+import Product from '../components/Product-user'
+
+export default{
+  components:{
+    Product
+  }
+}
+</script>
 
 
