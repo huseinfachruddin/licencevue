@@ -48,6 +48,9 @@
         <v-list-item-title class="text-h6 mb-1">
           {{data.name}}
         </v-list-item-title>
+        <v-list-item-title class="text-h mb-1">
+          {{data.num_licence}} Lisensi; {{data.num_domain}} Domain
+        </v-list-item-title>
         <p>{{data.desc}}</p>
       </v-list-item-content>
     </v-list-item>

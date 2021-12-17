@@ -36,6 +36,7 @@
     </v-list-item>
 
     <v-card-actions>
+    <v-spacer></v-spacer>
     <router-link :to="'/user/product/'+data.id" style="text-decoration: none;" >
       <v-btn
         outlined

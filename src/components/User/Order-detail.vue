@@ -73,7 +73,7 @@
               </v-radio-group>
               </td>
               </tr>
-              <tr  class="yellow">
+              <tr class="yellow">
                 <td>Selesaikan Pembayaran</td>
                 <td>
                 <v-btn
