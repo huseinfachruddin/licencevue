@@ -30,6 +30,9 @@
                   Username
                 </th>
                 <th class="text-left">
+                  No.Whatsapp
+                </th>
+                <th class="text-left">
                   Item
                 </th>
                 <th class="text-left">
@@ -50,6 +53,7 @@
               >
                 <td v-if="data">{{data.id}}</td>
                 <td v-if="data">{{data.user.name}}</td>
+                <td v-if="data">{{data.user.phone}}</td>
                 <td v-if="data">"{{data.suborder[0].package.product.name}}..."</td>
                 <td v-if="data">
                 <money-format :value="data.total" 

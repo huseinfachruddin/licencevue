@@ -232,7 +232,7 @@
             small
             @click="editLicence(edit)"
           >
-            simpan produk
+            simpan lisensi
           </v-btn>
           <v-btn
             v-if="!edit.id"
@@ -240,7 +240,7 @@
             small
             @click="createLicence(edit)"
           >
-            simpan produk
+            simpan lisensi
           </v-btn>
         </v-card-actions>
       </v-card>

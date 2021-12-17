@@ -38,10 +38,29 @@
         >
         {{error}}
         </v-alert>
+        <v-radio-group row v-model="data.greeting" >
+        <v-radio
+        label="Kak"
+        value="Kak"
+        ></v-radio>
+        <v-radio
+        label="Pak"
+        value="Pak"
+        ></v-radio>
+        <v-radio
+        label="Bu"
+        value="Bu"
+        ></v-radio>
+        </v-radio-group>
         <v-text-field
           outlined
           v-model="data.name"
           label="Username"
+        ></v-text-field>
+        <v-text-field
+          outlined
+          v-model="data.fullname"
+          label="Fullname"
         ></v-text-field>
         <v-text-field
           outlined

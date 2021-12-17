@@ -1,8 +1,8 @@
 <template>
   <v-container fill-height>
     <v-layout row wrap align-center justify-center>
-      <v-flex md6 sm8 >
-        <div class="pa-5" >
+      <v-flex md6 sm8 @keyup.enter="register(form)">
+        <div class="pa-5">
           <h2 class="text-center ma-5 white--text">Register</h2>
           <div>
             <v-text-field

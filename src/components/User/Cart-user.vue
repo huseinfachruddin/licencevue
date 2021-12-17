@@ -63,7 +63,7 @@
                 </td>
                 <td>
           <v-btn
-            v-if="!edit.id"
+            v-if="data.id"
             color="primary"
             @click="createOrder(data)"
           >
@@ -134,14 +134,12 @@ import axios from 'axios'
       async createOrder(data){
             try{
                 let response = await axios.post('/api/order',data)
-                console.log(response.data)
-
                 if (response.status == 200) {
                   router.push('/user/order/'+response.data.order.id);
                   this.getCart()
                 }
             }catch(errors){
-                console.log(errors.response)            
+                console.log(errors.response) 
             }
       },
     },

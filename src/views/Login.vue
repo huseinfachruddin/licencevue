@@ -5,9 +5,9 @@
     <v-layout row wrap align-center justify-center>
       <v-flex md6 sm8 >
 
-        <div class="pa-5" >
+        <div class="pa-5" @keyup.enter="login(form)">
         <h2 class="text-center ma-5 white--text">Login</h2>
-          <div>
+          <div  >
             <v-alert
             dense
             type="error"
@@ -51,7 +51,9 @@
             <div class="d-flex justify-end">              
             <v-btn
             v-if="!loading"
+            type="submit"
             @click="login(form)"
+            @keyup.enter="login(form)"
             color="success"
             small
             >

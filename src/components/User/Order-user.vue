@@ -20,6 +20,7 @@
       <v-card-text>
       </v-card-text>
       <v-divider></v-divider>
+      
         <v-simple-table>
             <thead>
               <tr>
@@ -46,7 +47,7 @@
                 :key="index"
               >
                 <td v-if="data">{{data.id}}</td>
-                <td v-if="data">"{{data.suborder[0].package.product.name}}..."</td>
+                <td v-if="data">"{{data.suborder[0].package.name}}..."</td>
                 <td v-if="data">
                 <money-format :value="data.total" 
                   locale="id" 
@@ -102,7 +103,7 @@ import axios from 'axios'
                   this.data=response.data.order
                 }
             }catch(errors){
-                console.log(errors)            
+                console.log(errors)           
             }
       },
       async deleteOrder(data){

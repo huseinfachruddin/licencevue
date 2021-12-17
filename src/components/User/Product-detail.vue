@@ -34,53 +34,93 @@
     <v-card-actions>
     </v-card-actions>
   <v-div class="d-flex justify-center">
-    <h2>Paket menarik untuk anda</h2>
   </v-div>
   </v-card>
-  <v-card
-    class="ma-1"
-    outlined
-    v-for="data in data.package" :key="data.id"
-    width="500"
-  >
-    <v-list-item three-line>
-      <v-list-item-content>
-        <v-list-item-title class="text-h6 mb-1">
-          {{data.name}}
-        </v-list-item-title>
-        <v-list-item-title class="text-h mb-1">
-          {{data.num_licence}} Lisensi; {{data.num_domain}} Domain
-        </v-list-item-title>
-        <p>{{data.desc}}</p>
-      </v-list-item-content>
-    </v-list-item>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-    <v-chip
-      class="ma-2"
-      outlined
-      solo
-      label
-      color="blue"
-    >
-    <money-format :value="data.price" 
-      locale="id" 
-      currency-code="IDR" 
-      >
-    </money-format>
-    </v-chip>
-      <v-btn
-        outlined
-        solo
-        color="blue"
-        @click="createCart(data)"
-      >
-        beli
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+  <v-card class="pa-3 justify-center">
+
+    <h2>Paket menarik untuk anda</h2>
+ <v-simple-table>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  Paket
+                </th>
+                <th class="text-left">
+                  harga
+                </th>
+                <th class="text-left">
+                  Aksi
+                </th>
+              </tr>
+            </thead>
+            <tbody v-if="!loading">
+              <tr
+                v-for="data,index in data.package"
+                :key="index"
+              >
+                <td v-if="data">{{data.name}}</td>
+                <td v-if="data">
+                <money-format :value="data.price" 
+                  locale="id" 
+                  currency-code="IDR"
+                  >
+                </money-format>
+                </td>
+                <td>      
+                    <v-btn
+                      @click="createCart(data)"
+                    >
+                    <v-icon color="warning"
+                      class="ma-1" 
+                    >
+                      mdi-cart
+                    </v-icon> 
+                    </v-btn>
+                </td>
+              </tr>
+            </tbody>
+        </v-simple-table>
+    </v-card>
   </v-row>
   </v-container>
+      <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <v-card>
+        <v-card-title class="text-h5 grey lighten-2">
+          Anda Belum Login 
+        </v-card-title>
+
+        <v-card-text>
+          Untuk melakukan pembelian anda diharuskan untuk login terlebih dahulu,atau daftar sebagai pengguna.
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+        <router-link :to="'/login'" style="text-decoration: none;">
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            Login
+          </v-btn>
+        </router-link>
+        <router-link :to="'/register'" style="text-decoration: none;">
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            Daftar
+          </v-btn>
+        </router-link >
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 </div>
 </template>
 <script>
@@ -130,14 +170,14 @@
                 }
             }catch(errors){
                 if (errors.response.status == 401) {
-                    router.push('/login');
+                    this.dialog=true
                 }
                 console.log(errors)            
             }
     },
     },
     mounted() {
-      this.getProduct(1)
+      this.getProduct()
     }
   }
 </script>
