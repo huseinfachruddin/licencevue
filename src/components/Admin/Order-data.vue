@@ -27,6 +27,9 @@
                   id
                 </th>
                 <th class="text-left">
+                  Username
+                </th>
+                <th class="text-left">
                   Item
                 </th>
                 <th class="text-left">
@@ -46,6 +49,7 @@
                 :key="index"
               >
                 <td v-if="data">{{data.id}}</td>
+                <td v-if="data">{{data.user.name}}</td>
                 <td v-if="data">"{{data.suborder[0].package.product.name}}..."</td>
                 <td v-if="data">
                 <money-format :value="data.total" 
