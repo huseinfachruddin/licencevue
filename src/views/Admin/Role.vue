@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Role from '../../components/Role-data'
+import Role from '../../components/Admin/Role-data'
 
 export default {
   components:{

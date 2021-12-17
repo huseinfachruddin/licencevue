@@ -16,6 +16,7 @@ import Product from '../views/Admin/Product.vue'
 import Licence from '../views/Admin/Licence.vue'
 import Package from '../views/Admin/Package.vue'
 import Order from '../views/Admin/Order.vue'
+import detailOrder from '../views/Admin/Order-detail.vue'
 
 import userLicence from '../views/User/Licence.vue'
 import userProduct from '../views/User/Product.vue'
@@ -116,6 +117,16 @@ const routes = [
     path: '/order',
     name: 'order',
     component: Order,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data order'
+    },
+  },
+  {
+    path: '/order/:id',
+    name: 'order admin',
+    component: detailOrder,
     meta:{
       auth:true,
       permision:'admin',

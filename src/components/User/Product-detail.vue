@@ -83,7 +83,7 @@
 <script>
   import axios from 'axios'
   import MoneyFormat from 'vue-money-format'
-  import router from '../router'
+  import router from '../../router'
 
   export default {
     components:{

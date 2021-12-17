@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Product from '../../components/Product-data'
+import Product from '../../components/Admin/Product-data'
 
 export default {
   components:{

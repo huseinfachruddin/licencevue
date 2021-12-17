@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Order from '../../components/Order-data'
+import Order from '../../components/Admin/Order-data'
 
 export default{
   components:{

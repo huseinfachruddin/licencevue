@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Product from '../../components/Product-detail'
+import Product from '../../components/User/Product-detail'
 
 export default{
   components:{

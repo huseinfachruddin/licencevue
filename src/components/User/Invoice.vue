@@ -5,19 +5,20 @@
     <v-col>
       <v-card
       class="overflow-hidden"
-      color=""
+      v-if="data"
     >
       <v-toolbar
         flat
-        color="orange lighten-2"
+        color="green lighten-2"
       >
-        <v-icon>mdi-cart</v-icon>
+        <v-icon>mdi-card</v-icon>
         <v-toolbar-title class="font-weight-light">
-          Keranjang Anda
+          Tagihan untuk {{data.user.name}}
         </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text>
+        {{data.user.email}}
       </v-card-text>
       <v-divider></v-divider>
         <v-simple-table>
@@ -27,13 +28,13 @@
                   Item
                 </th>
                 <th class="text-left">
-                  Sub total
+                  Sub-total
                 </th>
               </tr>
             </thead>
-            <tbody v-if="!loading">
+            <tbody>
               <tr
-                v-for="data,index in data.subcart"
+                v-for="data,index in data.suborder"
                 :key="index"
               >
                 <td v-if="data">"<strong>{{data.package.product.name}}"</strong> {{data.package.name}}</td>
@@ -44,31 +45,35 @@
                   >
                 </money-format>
                 </td>
-                <td>
-                    <v-icon color="red"
-                      class="ma-1" 
-                      @click="deleteOrder(data)">
-                      mdi-delete
-                    </v-icon>
-                </td>
               </tr>
-              <tr>
+              <tr class="green">
                 <td>TOTAL</td>
                 <td>
-                  <money-format :value="total" 
+                  <money-format :value="data.total" 
                   locale="id" 
                   currency-code="IDR" 
                   >
                 </money-format>
                 </td>
+              </tr>
+              <tr>
+                <td>Bayar melalui</td>
                 <td>
-          <v-btn
-            v-if="!edit.id"
-            color="primary"
-            @click="createOrder(data)"
-          >
-            Pesan sekarang
-          </v-btn>
+                 {{invoice.retail_outlet_name}}
+                </td>
+              </tr>
+              <tr>
+                <td>Code pembayaran</td>
+                <td>
+                  <strong>
+                 {{invoice.payment_code}}
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>
+                 {{invoice.status}}
                 </td>
               </tr>
             </tbody>
@@ -83,70 +88,44 @@
 <script>
 import axios from 'axios'
   import MoneyFormat from 'vue-money-format'
-  import router from '../router'
+
   export default {
   components:{
     'money-format': MoneyFormat,
   },
     data () {
       return {
-        success: false,
-        model: null,
-        dialog: false,
-        edit: false,
-        data:[],
-        total:null,
-        form:{}
+        data:{},
+        invoice:{}
       }
     },
     computed:{
-      loading(){
-        return this.$store.state.product.loading;
-      },
     },
     methods: {
-      async getCart(){
+      async getInvoice(){
             try{
-                let response = await axios.get('/api/cart')
+                let response = await axios.post('/api/xendit/invoice?id='+this.$route.params.id)
                 if (response.status == 200) {
-                  this.data=response.data.cart
-                  let total = 0;
-                  this.data.subcart.forEach(e => {
-                    total = total + e.total*e.amount
-                });
-                  this.total = total;
+                    this.invoice=response.data.xendit
                 }
             }catch(errors){
                 console.log(errors)            
             }
       },
-      async deleteOrder(data){
+      async getOrder(){
             try{
-                let response = await axios.delete('/api/cart/subcart/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/order/'+this.$route.params.id)
                 if (response.status == 200) {
-                  this.data=response.data.product
-                  this.getCart()
+                  this.data=response.data.order
                 }
             }catch(errors){
                 console.log(errors)            
-            }
-      },
-      async createOrder(data){
-            try{
-                let response = await axios.post('/api/order',data)
-                console.log(response.data)
-
-                if (response.status == 200) {
-                  router.push('/user/order/'+response.data.order.id);
-                  this.getCart()
-                }
-            }catch(errors){
-                console.log(errors.response)            
             }
       },
     },
     mounted() {
-      this.getCart()
+      this.getOrder()
+      this.getInvoice()
     }
   }
 </script>

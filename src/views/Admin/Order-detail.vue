@@ -3,8 +3,8 @@
   <v-container>
     <v-row>
       <v-col>
-          <Order v-if="data.status==null"/>
-          <Invoice v-if="data.status!=null"/>
+          <Order/>
+          <Invoice/>
       </v-col>
     </v-row>
   </v-container>
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Order from '../../components/User/Order-detail'
-import Invoice from '../../components/User/Invoice'
+import Order from '../../components/Admin/Order-detail'
+import Invoice from '../../components/Admin/Invoice'
 import axios from 'axios'
 
 export default{

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import Product from '../components/Product-user'
+import Product from '../components/User/Product-user'
 
 export default{
   components:{

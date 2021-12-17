@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Packagedata from '../../components/Package-data'
+import Packagedata from '../../components/Admin/Package-data'
 
 export default{
   components:{

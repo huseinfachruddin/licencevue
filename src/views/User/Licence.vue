@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Licence from '../../components/Licence-user'
+import Licence from '../../components/User/Licence-user'
 
 export default {
   components:{

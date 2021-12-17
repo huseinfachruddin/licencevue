@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Order from '../../components/Order-user'
+import Order from '../../components/User/Order-user'
 
 export default{
   components:{

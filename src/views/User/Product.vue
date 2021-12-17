@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Proruct from '../../components/Product-user'
+import Proruct from '../../components/User/Product-user'
 
 export default {
   components:{

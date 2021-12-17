@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import User from '../../components/User-data'
+import User from '../../components/Admin/User-data'
 
 export default {
   components:{

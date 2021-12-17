@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Cart from '../../components/Cart-user'
+import Cart from '../../components/User/Cart-user'
 
 export default{
   components:{
