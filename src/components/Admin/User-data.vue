@@ -34,7 +34,7 @@
             <thead>
               <tr>
                 <th class="text-left">
-                  Username
+                  Nama
                 </th>
                 <th class="text-left">
                   Email
@@ -55,7 +55,7 @@
                 v-for="data,index in data.data"
                 :key="index"
               >
-                <td>{{data.name}}</td>
+                <td><span v-if="data.greeting">{{data.greeting}}</span> {{data.name}}</td>
                 <td>{{data.email}}</td>
                 <td>{{data.phone}}</td>
                 <td>                
@@ -111,6 +111,18 @@
         >
         {{error}}
         </v-alert>
+        <v-text-field
+          small
+          outlined
+          v-model="edit.greeting"
+          label="Sapaan"
+        ></v-text-field>
+        <v-text-field
+          small
+          outlined
+          v-model="edit.fullname"
+          label="Nma Lengkap"
+        ></v-text-field>
         <v-text-field
           small
           outlined

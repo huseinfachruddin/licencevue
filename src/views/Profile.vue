@@ -54,8 +54,8 @@
         </v-radio-group>
         <v-text-field
           outlined
-          v-model="data.name"
-          label="Username"
+          v-model="data.greeting"
+          label="Sapaan"
         ></v-text-field>
         <v-text-field
           outlined
@@ -64,13 +64,18 @@
         ></v-text-field>
         <v-text-field
           outlined
-          v-model="data.email"
-          label="Email"
+          v-model="data.name"
+          label="Username"
         ></v-text-field>
         <v-text-field
           outlined
           v-model="data.phone"
           label="Phone"
+        ></v-text-field>
+        <v-text-field
+          outlined
+          v-model="data.email"
+          label="Email"
         ></v-text-field>
       </v-card-text>
       <v-card-text v-if="isPassword">

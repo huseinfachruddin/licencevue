@@ -9,6 +9,40 @@
               dense
               outlined
               solo
+              v-model="form.greeting"
+              label="Sapaan"
+              >
+              </v-text-field>
+                <v-alert
+                dense
+                type="error"
+                v-for="error in errors.greeting" 
+                :key="error">
+                {{error}}
+                </v-alert>
+            </div>
+          <div>
+            <v-text-field
+              dense
+              outlined
+              solo
+              v-model="form.fullname"
+              label="Nama lengkap"
+              >
+              </v-text-field>
+                <v-alert
+                dense
+                type="error"
+                v-for="error in errors.fullname" 
+                :key="error">
+                {{error}}
+                </v-alert>
+            </div>
+          <div>
+            <v-text-field
+              dense
+              outlined
+              solo
               v-model="form.name"
               label="Username"
               >
@@ -26,14 +60,14 @@
               dense
               outlined
               solo
-              v-model="form.email"
-              label="Email"
+              v-model="form.phone"
+              label="Nomor WA"
               >
               </v-text-field>
                 <v-alert
                 dense
                 type="error"
-                v-for="error in errors.email" 
+                v-for="error in errors.phone" 
                 :key="error">
                 {{error}}
                 </v-alert>
@@ -43,14 +77,14 @@
               dense
               outlined
               solo
-              v-model="form.phone"
-              label="Nomor telpon/WA"
+              v-model="form.email"
+              label="Email"
               >
               </v-text-field>
                 <v-alert
                 dense
                 type="error"
-                v-for="error in errors.phone" 
+                v-for="error in errors.email" 
                 :key="error">
                 {{error}}
                 </v-alert>

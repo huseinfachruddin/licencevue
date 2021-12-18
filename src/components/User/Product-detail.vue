@@ -93,8 +93,7 @@
         </v-card-title>
 
         <v-card-text>
-          Untuk melakukan pembelian anda diharuskan untuk login terlebih dahulu,atau daftar sebagai pengguna.
-        </v-card-text>
+Untuk melakukan pembelian anda harus login terlebih dahulu, atau daftar sebagai pengguna baru.        </v-card-text>
 
         <v-divider></v-divider>
 
