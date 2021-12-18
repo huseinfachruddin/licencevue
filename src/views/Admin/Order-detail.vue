@@ -4,7 +4,7 @@
     <v-row>
       <v-col>
           <Order/>
-          <Invoice/>
+          <Invoice v-if="data.status"/>
       </v-col>
     </v-row>
   </v-container>
@@ -31,7 +31,8 @@ export default{
             try{
                 let response = await axios.get('/api/order/'+this.$route.params.id)
                 if (response.status == 200) {
-                  this.data=response.data.order
+                  this.data=response.data
+                  console.log(this.data)
                 }
             }catch(errors){
                 console.log(errors)            

@@ -50,9 +50,10 @@
               <tr
                 v-for="data,index in data"
                 :key="index"
+                :class="data.deleted_at?'red':''"
               >
-                <td v-if="data">{{data.id}}</td>
-                <td v-if="data">{{data.user.name}}</td>
+                <td v-if="data">{{data.id}}</td>          
+                <td><span v-if="data.greeting">{{data.greeting}}</span> {{data.fullname}}</td>
                 <td v-if="data">{{data.user.phone}}</td>
                 <td v-if="data">{{data.suborder[0].package.product.name}} {{data.suborder[0].package.name}}</td>
                 <td v-if="data">
@@ -72,6 +73,7 @@
                     </v-icon> 
                     </router-link>
                     <v-icon color="red"
+                      v-if="!data.deleted_at"
                       class="ma-1" 
                       @click="deleteOrder(data)">
                       mdi-delete
@@ -115,10 +117,14 @@ import axios from 'axios'
       },
       async deleteOrder(data){
             try{
+              
+              if (confirm('Yakin ingin menghapus data')) {
+                
                 let response = await axios.delete('/api/order/'+data.id)
                 if (response.status == 200) {
                   this.getOrder()
                 }
+              }
             }catch(errors){
                 console.log(errors)            
             }
