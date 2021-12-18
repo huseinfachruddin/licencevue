@@ -55,7 +55,7 @@
                 v-for="data,index in data.data"
                 :key="index"
               >
-                <td><span v-if="data.greeting">{{data.greeting}}</span> {{data.name}}</td>
+                <td><span v-if="data.greeting">{{data.greeting}}</span> {{data.fullname}}</td>
                 <td>{{data.email}}</td>
                 <td>{{data.phone}}</td>
                 <td>                
