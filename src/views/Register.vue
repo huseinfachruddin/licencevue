@@ -2,17 +2,23 @@
   <v-container fill-height>
     <v-layout row wrap align-center justify-center>
       <v-flex md6 sm8 @keyup.enter="register(form)">
-        <div class="pa-5">
-          <h2 class="text-center ma-5 white--text">Register</h2>
-          <div>
-            <v-text-field
-              dense
-              outlined
-              solo
-              v-model="form.greeting"
-              label="Sapaan"
-              >
-              </v-text-field>
+        <div class="pa-5 white">
+          <h2 class="text-center ma-5 black--text">Register</h2>
+          <div >
+                <v-radio-group  row v-model="form.greeting" label="Sapaan :">
+                  <v-radio
+                  label="Kak"
+                  value="Kak"
+                  ></v-radio>
+                  <v-radio
+                  label="Pak"
+                  value="Pak"
+                  ></v-radio>
+                  <v-radio
+                  label="Bu"
+                  value="Bu"
+                  ></v-radio>
+                </v-radio-group>
                 <v-alert
                 dense
                 type="error"

@@ -54,11 +54,6 @@
         </v-radio-group>
         <v-text-field
           outlined
-          v-model="data.greeting"
-          label="Sapaan"
-        ></v-text-field>
-        <v-text-field
-          outlined
           v-model="data.fullname"
           label="Fullname"
         ></v-text-field>

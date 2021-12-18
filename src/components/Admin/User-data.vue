@@ -111,12 +111,20 @@
         >
         {{error}}
         </v-alert>
-        <v-text-field
-          small
-          outlined
-          v-model="edit.greeting"
-          label="Sapaan"
-        ></v-text-field>
+        <v-radio-group row v-model="data.greeting" >
+          <v-radio
+          label="Kak"
+          value="Kak"
+          ></v-radio>
+          <v-radio
+          label="Pak"
+          value="Pak"
+          ></v-radio>
+          <v-radio
+          label="Bu"
+          value="Bu"
+          ></v-radio>
+        </v-radio-group>
         <v-text-field
           small
           outlined

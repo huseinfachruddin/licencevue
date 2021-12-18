@@ -36,9 +36,6 @@
                   Item
                 </th>
                 <th class="text-left">
-                  Deskripsi
-                </th>
-                <th class="text-left">
                   jumlah
                 </th>
                 <th class="text-left">
@@ -57,8 +54,7 @@
                 <td v-if="data">{{data.id}}</td>
                 <td v-if="data">{{data.user.name}}</td>
                 <td v-if="data">{{data.user.phone}}</td>
-                <td v-if="data">{{data.suborder[0].package.name}}</td>
-                <td v-if="data">{{data.suborder[0].package.num_licence}} Lisensi,{{data.suborder[0].package.num_domain}} Domain</td>
+                <td v-if="data">{{data.suborder[0].package.product.name}} {{data.suborder[0].package.name}}</td>
                 <td v-if="data">
                 <money-format :value="data.total" 
                   locale="id" 
