@@ -44,6 +44,9 @@
                 <th class="text-left">
                   Deskripsi
                 </th>
+                <th class="text-left">
+                  Deskripsi
+                </th>
               </tr>
             </thead>
             <tbody v-if="!loading">
@@ -53,6 +56,9 @@
               >
                 <td v-if="data">{{data.name}}</td>
                 <td v-if="data">{{data.code}}</td>
+                <td v-if="data">
+                  <a :href="data.link">Download</a>
+                </td>
                 <td v-if="data" class="text-truncate" style="max-width: 500px;">{{data.desc}}</td>
                 <td>      
                     <router-link :to="'/product/'+data.id" style="text-decoration: none;">
@@ -120,6 +126,12 @@
           v-model="edit.desc"
           label="Deskripsi"
         ></v-textarea>
+        <v-text-field
+          small
+          outlined
+          v-model="edit.link"
+          label="Link"
+        ></v-text-field>
       </v-card-text>
 
         <v-divider></v-divider>

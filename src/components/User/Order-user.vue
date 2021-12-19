@@ -47,7 +47,7 @@
                 :key="index"
               >
                 <td v-if="data">{{data.id}}</td>
-                <td v-if="data">"{{data.suborder[0].package.name}}..."</td>
+                <td v-if="data">{{data.suborder[0].package.product.name}} {{data.suborder[0].package.name}}</td>
                 <td v-if="data">
                 <money-format :value="data.total" 
                   locale="id" 
@@ -108,10 +108,12 @@ import axios from 'axios'
       },
       async deleteOrder(data){
             try{
-                let response = await axios.delete('/api/order/'+data.id)
+              if (confirm('yakin akan membatalkan pesanan')) {
+                let response = await axios.put('/api/order/'+data.id,{status:'dibatalkan'})
                 if (response.status == 200) {
                   this.getOrder()
                 }
+              }
             }catch(errors){
                 console.log(errors)            
             }
