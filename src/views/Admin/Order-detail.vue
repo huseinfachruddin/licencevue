@@ -3,8 +3,9 @@
   <v-container>
     <v-row>
       <v-col>
-          <Order/>
-          <Invoice v-if="data.status"/>
+          <Order v-if="data.method==null"/>
+          <Xendit v-if="data.method=='xendit'"/>
+          <Transfer v-if="data.method=='transfer'"/>
       </v-col>
     </v-row>
   </v-container>
@@ -13,13 +14,15 @@
 
 <script>
 import Order from '../../components/Admin/Order-detail'
-import Invoice from '../../components/Admin/Invoice'
+import Xendit from '../../components/Admin/Xendit'
+import Transfer from '../../components/Admin/Transfer'
 import axios from 'axios'
 
 export default{
   components:{
     Order,
-    Invoice
+    Xendit,
+    Transfer
   },
   data(){
     return{

@@ -144,7 +144,7 @@
 </div>
 </template>
 <script>
-import axios from 'axios'
+  import axios from 'axios'
   import MoneyFormat from 'vue-money-format'
   export default {
         components:{

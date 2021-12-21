@@ -16,6 +16,8 @@ import Product from '../views/Admin/Product.vue'
 import Licence from '../views/Admin/Licence.vue'
 import Package from '../views/Admin/Package.vue'
 import Order from '../views/Admin/Order.vue'
+import Account from '../views/Admin/Account.vue'
+import Confirm from '../views/Admin/Confirm.vue'
 import detailOrder from '../views/Admin/Order-detail.vue'
 
 import userLicence from '../views/User/Licence.vue'
@@ -82,6 +84,26 @@ const routes = [
       permision:'admin',
       title:'Data Role'
     }
+  },
+  {
+    path: '/account',
+    name: 'account',
+    component: Account,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data Account'
+  }
+  },
+  {
+    path: '/confirm',
+    name: 'confirm',
+    component: Confirm,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data Confirm'
+  }
   },
   {
       path: '/product',

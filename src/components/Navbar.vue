@@ -139,6 +139,22 @@
                   <v-list-item-title >Pesanan</v-list-item-title>
                 </v-list-item>
             </router-link>
+            <router-link to="/account" style="text-decoration: none;" >
+                <v-list-item>
+                  <v-icon>
+                    mdi-bank
+                  </v-icon>
+                  <v-list-item-title >Rekening</v-list-item-title>
+                </v-list-item>
+            </router-link>
+            <router-link to="/confirm" style="text-decoration: none;" >
+                <v-list-item>
+                  <v-icon>
+                    mdi-export
+                  </v-icon>
+                  <v-list-item-title >Konfirmasi pembayaran</v-list-item-title>
+                </v-list-item>
+            </router-link>
           </div>
           <v-list-item>
             <v-list-item-title >
