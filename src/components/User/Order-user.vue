@@ -65,6 +65,7 @@
                     </v-icon> 
                     </router-link>
                     <v-icon color="red"
+                      v-if="data.status!='sudah dibayar'"
                       class="ma-1" 
                       @click="deleteOrder(data)">
                       mdi-delete

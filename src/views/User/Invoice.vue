@@ -3,8 +3,8 @@
   <v-container>
     <v-row>
       <v-col>
-          <Order v-if="data.status==null"/>
-          <Orderpayment v-if="data.status!=null"/>
+          <Xendit v-if="data.method=='xendit'"/>
+          <Transfer v-if="data.method=='transfer'"/>
       </v-col>
     </v-row>
   </v-container>
@@ -12,15 +12,15 @@
 </template>
 
 <script>
-import Order from '../../components/User/Order-detail'
-import Orderpayment from '../../components/User/Order-payment'
+import Xendit from '../../components/User/Xendit'
+import Transfer from '../../components/User/Transfer'
 
 import axios from 'axios'
 
 export default{
   components:{
-    Order,
-    Orderpayment
+    Xendit,
+    Transfer
   },
   data(){
     return{

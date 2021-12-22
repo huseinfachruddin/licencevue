@@ -26,6 +26,8 @@ import userPackage from '../views/User/Package.vue'
 import userOrder from '../views/User/Order.vue'
 import userDetailOrder from '../views/User/Order-detail.vue'
 import userCart from '../views/User/Cart.vue'
+import userInvoice from '../views/User/Invoice.vue'
+import userConfirm from '../views/User/Confirm.vue'
 
 
 Vue.use(vuerouter)
@@ -201,6 +203,26 @@ const routes = [
     path: '/user/order/:id',
     name: 'detail-order',
     component:userDetailOrder,
+    meta:{
+      auth:true,
+      permision:'free',
+      title:'Pesanan Anda'
+    }
+  },
+  {
+    path: '/user/invoice/:id',
+    name: 'detail-invoice',
+    component:userInvoice,
+    meta:{
+      auth:true,
+      permision:'free',
+      title:'Konfirmasi Anda'
+    }
+  },
+  {
+    path: '/user/konfirmasi/:id',
+    name: 'konfirmasi-user',
+    component:userConfirm,
     meta:{
       auth:true,
       permision:'free',

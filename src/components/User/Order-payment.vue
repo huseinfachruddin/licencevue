@@ -9,16 +9,15 @@
     >
       <v-toolbar
         flat
-        color="green lighten-2"
+        color="yellow lighten-2"
       >
-        <v-icon>mdi-card</v-icon>
+        <v-icon>mdi-cart-plus</v-icon>
         <v-toolbar-title class="font-weight-light">
-          Tagihan untuk {{data.user.name}}
+          Data Pesanan Anda
         </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text>
-        {{data.user.email}}
       </v-card-text>
       <v-divider></v-divider>
         <v-simple-table>
@@ -46,8 +45,8 @@
                 </money-format>
                 </td>
               </tr>
-              <tr class="yellow">
-                <td>TOTAL</td>
+              <tr>
+                <td>Total + Code unik</td>
                 <td>
                   <money-format :value="data.total" 
                   locale="id" 
@@ -56,17 +55,30 @@
                 </money-format>
                 </td>
               </tr>
-              <tr>
-                <td></td>
+              <tr class="yellow">
                 <td>
-                <router-link :to="'/user/konfirmasi/'+data.id" style="text-decoration: none;" >
-                  <v-btn
-                    color="success"
-                    small
+                  Total pembayaran 
+                </td>
+                <td>
+                <money-format :value="data.total" 
+                  locale="id" 
+                  currency-code="IDR" 
                   >
-                    Konfirmasi pembayaran
-                  </v-btn>
-                </router-link>
+                </money-format>
+                </td>
+              </tr>
+              <tr class="">
+                <td>
+                  status : {{data.status}}
+                </td>
+                <td>
+              <router-link :to="'/user/invoice/'+data.id" style="text-decoration: none;" >
+                <v-btn
+                  color="success"
+                >
+                    Menuju ke invoice
+                </v-btn>
+              </router-link>
                 </td>
               </tr>
             </tbody>
@@ -79,7 +91,7 @@
 </div>
 </template>
 <script>
-import axios from 'axios'
+  import axios from 'axios'
   import MoneyFormat from 'vue-money-format'
 
   export default {
@@ -88,29 +100,22 @@ import axios from 'axios'
   },
     data () {
       return {
-        data:{},
-        account:{},
-        form:{}
+        success: false,
+        model: null,
+        dialog: false,
+        edit: false,
+        data:[],
+        channel:[],
+        form:{},
+        xendit:{},
+        code:null,
+        total:null,
+        account:[]
       }
     },
     computed:{
     },
     methods: {
-      async createConfirm(form){
-        let data={
-          order_id:this.data.id,
-          account_id:form.account_id,
-          paid:form.paid
-        }
-            try{
-                let response = await axios.post('/api/transfer',data)
-                if (response.status == 200) {
-                    alert('Anda telah melakukan konfirmasi pembayaran,Tunggu konfirmasi dari admin')
-                }
-            }catch(errors){
-                console.log(errors)            
-            }
-      },
       async getOrder(){
             try{
                 let response = await axios.get('/api/order/'+this.$route.params.id)
@@ -123,7 +128,7 @@ import axios from 'axios'
       },
       async getAccount(){
             try{
-                let response = await axios.get('/api/account/')
+                let response = await axios.get('/api/account')
                 if (response.status == 200) {
                   this.account=response.data.account
                 }
@@ -132,9 +137,12 @@ import axios from 'axios'
             }
       },
     },
-    mounted() {
-      this.getOrder()
-      this.getAccount()
+    async mounted() {
+      await this.getOrder()
+      await this.getAccount()
+      await this.getChannel()
+      this.code = await Math.floor((Math.random() * 99)+1)
+      this.total = this.data.total+this.code
     }
   }
 </script>

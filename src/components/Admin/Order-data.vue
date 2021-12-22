@@ -173,13 +173,14 @@
             }
       },
       async editOrder(data){
-        console.log(data.status)
             try{
+              if (confirm('yakin merubah status pembayaran menjadi'+data.status)) {
                 let response = await axios.put('/api/order/'+data.id,data)
                 if (response.status == 200) {
                   this.data=response.data.order
                   this.getOrder()
                 }
+              }
             }catch(errors){
                 console.log(errors)            
             }

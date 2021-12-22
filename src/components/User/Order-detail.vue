@@ -72,7 +72,7 @@
                   Total pembayaran 
                 </td>
                 <td>
-                <money-format :value="transfer" 
+                <money-format :value="total" 
                   locale="id" 
                   currency-code="IDR" 
                   >
@@ -142,16 +142,7 @@
                 >
                   Bayar melalui xendit
                 </v-btn>
-                <v-btn
-                v-if="xendit==false"
-                  color="success"
-                  @click="createTransfer(form)"
-                >
-                  Selesaikan transfer
-                </v-btn>
                 </td>
-              </tr>
-              <tr>
               </tr>
             </tbody>
         </v-simple-table>
@@ -258,7 +249,7 @@
       await this.getAccount()
       await this.getChannel()
       this.code = await Math.floor((Math.random() * 99)+1)
-      this.total = await this.data.total+this.code
+      this.total = this.data.total+this.code
     }
   }
 </script>
