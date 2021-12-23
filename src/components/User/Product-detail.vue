@@ -68,7 +68,18 @@
                 </td>
                 <td>      
                     <v-btn
-                      @click="createCart(data)"
+                    v-if="active==true"
+                      @click="active=true,createCart(data)"
+                    >
+                    <v-icon color="warning"
+                      class="ma-1" 
+                    >
+                      mdi-cart
+                    </v-icon> 
+                    </v-btn>
+                    <v-btn
+                    disabled
+                    v-if="active==false"
                     >
                     <v-icon color="warning"
                       class="ma-1" 
@@ -136,6 +147,7 @@ Untuk melakukan pembelian anda harus login terlebih dahulu, atau daftar sebagai 
         success: false,
         dialog: false,
         edit: false,
+        active: true,
         data:[]
       }
     },
