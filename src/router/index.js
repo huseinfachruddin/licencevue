@@ -18,6 +18,7 @@ import Package from '../views/Admin/Package.vue'
 import Order from '../views/Admin/Order.vue'
 import Account from '../views/Admin/Account.vue'
 import Confirm from '../views/Admin/Confirm.vue'
+import Channel from '../views/Admin/Channel.vue'
 import detailOrder from '../views/Admin/Order-detail.vue'
 
 import userLicence from '../views/User/Licence.vue'
@@ -105,6 +106,16 @@ const routes = [
       auth:true,
       permision:'admin',
       title:'Data Confirm'
+  }
+  },
+  {
+    path: '/channel',
+    name: 'channel',
+    component: Channel,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data channel'
   }
   },
   {

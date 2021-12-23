@@ -99,7 +99,7 @@ import axios from 'axios'
     methods: {
       async getOrder(){
             try{
-                let response = await axios.get('/api/order')
+                let response = await axios.get('/api/order',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }

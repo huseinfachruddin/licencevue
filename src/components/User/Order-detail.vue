@@ -80,7 +80,9 @@
                 </td>
               </tr>
               <tr>
+                <td>
                 <h3 class="ma-3">Pilih Metode Pembayaran</h3>
+                </td>
               </tr>
               <tr>
                 <h4 class="ma-3">Melalui Transfer</h4>
@@ -122,19 +124,27 @@
               <td>
               <v-radio-group
                 v-model="form.channel"
-                class="ma-3 justify-center"
+                row
               >
                 <v-radio
                   v-for="data,index in channel" :key="index"
                   :label="data.name"
+                  dense
+                                  class="ma-2"
+
                   :value="data.channel_code"
-                ></v-radio>
+                >
+                        <template v-slot:label>
+                          <div><v-img :src="data.img" contain width="80" height="50"></v-img>
+                          </div>
+                        </template>
+                </v-radio>
               </v-radio-group>
               </td>
               </tr>
               
               <tr  class="yellow">
-                <td>Selesaikan Pembayaran</td>
+                <td></td>
                 <td>
                 <v-btn
                   color="success"
@@ -201,9 +211,9 @@
       },
       async getChannel(){
             try{
-                let response = await axios.get('/api/xendit/channel')
+                let response = await axios.get('/api/channel')
                 if (response.status == 200) {
-                  this.channel=response.data.xendit
+                  this.channel=response.data.channel
                 }
             }catch(errors){
                 console.log(errors)
@@ -219,7 +229,7 @@
             try{
                 let response = await axios.put('/api/order/'+data.id,data)
                 if (response.status == 200) {
-                  this.$router.go()
+                  this.$router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
                 console.log(errors)            
@@ -237,7 +247,7 @@
                 let order = await axios.put('/api/order/'+data.id,data)
                 let response = await axios.post('/api/xendit/payment',data)
                 if (response.status == 200 || order.status == 200) {
-                  this.$route.go()
+                  this.$router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
                 console.log(errors)            

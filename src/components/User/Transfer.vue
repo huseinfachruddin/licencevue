@@ -47,7 +47,7 @@
                 </td>
               </tr>
               <tr class="yellow">
-                <td>TOTAL</td>
+                <td>TOTAL + Kode unik</td>
                 <td>
                   <money-format :value="data.total" 
                   locale="id" 
@@ -55,6 +55,15 @@
                   >
                 </money-format>
                 </td>
+              </tr>
+              <tr>
+                <h4 class="ma-3">
+                  Silahkan transfer ke salahsatu rekening di bawah ini :
+                </h4>
+              </tr>
+              <tr v-for="data,index in account" :key="index">
+                <td>{{data.name}}</td>
+                <td>{{data.bank}}-{{data.num_account}}</td>
               </tr>
               <tr>
                 <td></td>

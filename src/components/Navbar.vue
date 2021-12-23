@@ -155,6 +155,14 @@
                   <v-list-item-title >Konfirmasi pembayaran</v-list-item-title>
                 </v-list-item>
             </router-link>
+            <router-link to="/channel" style="text-decoration: none;" >
+                <v-list-item>
+                  <v-icon>
+                    mdi-cash-multiple
+                  </v-icon>
+                  <v-list-item-title >Metode pembayaran</v-list-item-title>
+                </v-list-item>
+            </router-link>
           </div>
           <v-list-item>
             <v-list-item-title >

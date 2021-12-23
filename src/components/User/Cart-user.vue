@@ -107,7 +107,7 @@ import axios from 'axios'
     methods: {
       async getCart(){
             try{
-                let response = await axios.get('/api/cart')
+                let response = await axios.get('/api/cart',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.cart
                   let total = 0;
