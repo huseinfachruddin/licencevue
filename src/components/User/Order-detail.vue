@@ -130,9 +130,10 @@
                   v-for="data,index in channel" :key="index"
                   :label="data.name"
                   dense
-                                  class="ma-2"
-
-                  :value="data.channel_code"
+                  
+                  @click="active=true"
+                  class="ma-2"
+                  :value="data.code"
                 >
                         <template v-slot:label>
                           <div><v-img :src="data.img" contain width="80" height="50"></v-img>
@@ -146,9 +147,18 @@
               <tr  class="yellow">
                 <td></td>
                 <td>
+                  
                 <v-btn
                   color="success"
-                  @click="payByTransfer(form)"
+                  v-if="active"
+                  @click="payByXendit(form)"
+                >
+                  Bayar melalui xendit
+                </v-btn>
+                <v-btn
+                disabled
+                  color="success"
+                  v-if="!active"
                 >
                   Bayar melalui xendit
                 </v-btn>
@@ -180,6 +190,7 @@
         data:[],
         channel:[],
         form:{},
+        active:false,
         xendit:{},
         code:null,
         total:null,
@@ -229,7 +240,7 @@
             try{
                 let response = await axios.put('/api/order/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                  this.$router.push('/user/invoice/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                  this.$router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
                 console.log(errors)            
@@ -237,16 +248,14 @@
       },
       async payByXendit(form){
             let data = {
-              id : this.data.id,
-              status : 'menunggu pembayaran',
-              method : 'xendit',
+              id : this.$route.params.id,
               channel : form.channel,
-              total : this.total
+              total : this.total,
+              redirect : window.location.origin+'/user/invoice/'+this.$route.params.id
             }
             try{
-                let order = await axios.put('/api/order/'+data.id,data)
-                let response = await axios.post('/api/xendit/payment',data)
-                if (response.status == 200 || order.status == 200) {
+                let response = await axios.post('/api/xendit/payment',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
                   this.$router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
@@ -255,10 +264,10 @@
       }
     },
     async mounted() {
+      this.code = await Math.floor((Math.random() * 99)+1)
       await this.getOrder()
       await this.getAccount()
       await this.getChannel()
-      this.code = await Math.floor((Math.random() * 99)+1)
       this.total = this.data.total+this.code
     }
   }

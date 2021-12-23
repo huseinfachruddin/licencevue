@@ -46,10 +46,14 @@
                 </money-format>
                 </td>
               </tr>
-              <tr class="green">
+              <tr>
+                <td>Kode unik</td>
+                <td>{{code}}</td>
+              </tr>
+              <tr class="yellow">
                 <td>TOTAL</td>
                 <td>
-                  <money-format :value="data.total" 
+                  <money-format :value="total" 
                   locale="id" 
                   currency-code="IDR" 
                   >
@@ -59,14 +63,14 @@
               <tr>
                 <td>Bayar melalui</td>
                 <td>
-                 {{invoice.retail_outlet_name}}
+                 {{data.method}}
                 </td>
               </tr>
               <tr>
                 <td>Code pembayaran</td>
                 <td>
                   <strong>
-                 {{invoice.payment_code}}
+                 {{data.paid_code}}
                   </strong>
                 </td>
               </tr>
@@ -96,17 +100,24 @@ import axios from 'axios'
     data () {
       return {
         data:{},
-        invoice:{}
+        invoice:{},
+        total:{},
+        code:{}
       }
     },
     computed:{
     },
     methods: {
       async getInvoice(){
+                let form = {
+                  channel : this.data.method,
+                  id : this.data.paid_code
+                }
             try{
-                let response = await axios.post('/api/xendit/invoice?id='+this.$route.params.id)
+                let response = await axios.post('/api/xendit/invoice',form,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     this.invoice=response.data.xendit
+                    console.log(this.invoice)
                 }
             }catch(errors){
                 console.log(errors)            
@@ -114,18 +125,24 @@ import axios from 'axios'
       },
       async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id)
-                if (response.status == 200) {
+                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                  if (response.status == 200) {
                   this.data=response.data.order
-                }
+                  let total = 0;
+                  this.data.suborder.forEach(e => {
+                    total = total + e.total*e.amount
+                });
+                this.code = this.data.total-total
+                  this.total = this.data.total;
+                  }
             }catch(errors){
                 console.log(errors)            
             }
       },
     },
-    mounted() {
-      this.getOrder()
-      this.getInvoice()
+    async mounted() {
+      await this.getOrder()
+      await this.getInvoice()
     }
   }
 </script>

@@ -34,8 +34,8 @@
             </thead>
             <tbody>
               <tr
-                v-for="data,index in data.suborder"
-                :key="index"
+                v-for="data,i in data.suborder"
+                :key="i"
               >
                 <td v-if="data">"<strong>{{data.package.product.name}}"</strong> {{data.package.name}}</td>
                 <td v-if="data">
@@ -112,7 +112,7 @@ import axios from 'axios'
           paid:form.paid
         }
             try{
-                let response = await axios.post('/api/transfer',data)
+                let response = await axios.post('/api/transfer',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     alert('Anda telah melakukan konfirmasi pembayaran,Tunggu konfirmasi dari admin')
                 }
@@ -122,7 +122,7 @@ import axios from 'axios'
       },
       async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id)
+                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }
@@ -132,7 +132,7 @@ import axios from 'axios'
       },
       async getAccount(){
             try{
-                let response = await axios.get('/api/account/')
+                let response = await axios.get('/api/account',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.account=response.data.account
                 }

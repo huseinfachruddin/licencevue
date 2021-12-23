@@ -133,7 +133,7 @@ import axios from 'axios'
       },
       async createOrder(data){
             try{
-                let response = await axios.post('/api/order',data)
+                let response = await axios.post('/api/order',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   router.push('/user/order/'+response.data.order.id);
                   this.getCart()

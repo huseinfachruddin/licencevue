@@ -140,7 +140,6 @@
     async mounted() {
       await this.getOrder()
       await this.getAccount()
-      await this.getChannel()
       this.code = await Math.floor((Math.random() * 99)+1)
       this.total = this.data.total+this.code
     }

@@ -3,8 +3,8 @@
   <v-container>
     <v-row>
       <v-col>
-          <Xendit v-if="data.method=='xendit'"/>
           <Transfer v-if="data.method=='transfer'"/>
+          <Xendit v-if="data.method!='transfer'"/>
       </v-col>
     </v-row>
   </v-container>

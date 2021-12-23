@@ -54,6 +54,7 @@
                   currency-code="IDR" 
                   >
                 </money-format>
+                
                 </td>
                 <td v-if="data">{{data.status}}</td>
                 <td v-if="data">
@@ -65,8 +66,8 @@
                     </v-icon> 
                     </router-link>
                     <v-icon color="red"
-                      v-if="data.status!='sudah dibayar'"
-                      class="ma-1" 
+                      v-if="data.status!='dibatalkan' && data.status!='sudah dibayar'"
+                      class="ma-1"
                       @click="deleteOrder(data)">
                       mdi-delete
                     </v-icon>
