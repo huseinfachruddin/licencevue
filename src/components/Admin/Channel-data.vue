@@ -93,7 +93,7 @@ import draggable from 'vuedraggable'
     methods: {
       async getChannel(){
             try{
-                let response = await axios.get('/api/channel')
+                let response = await axios.get('/api/channel',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.channel
                 }
@@ -104,7 +104,7 @@ import draggable from 'vuedraggable'
       async editActive(form){
         form.active=!form.active
         try{
-          let response = await axios.put('/api/channel/'+form.id+'?active='+form.active)
+          let response = await axios.put('/api/channel/'+form.id+'?active='+form.active,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.getChannel()
                 }
@@ -122,7 +122,7 @@ import draggable from 'vuedraggable'
       watch: {
         data: async function (val){
             try{
-                let response = await axios.put('/api/channel/queue',{channel : val})
+                let response = await axios.put('/api/channel/queue',{channel : val},{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   console.log(response.data.channel)
                 }
