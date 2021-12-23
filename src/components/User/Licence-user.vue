@@ -66,7 +66,7 @@
                 <td v-if="data">{{data.max_domain}}</td>
                 <td v-if="data">{{data.due}}</td>
                 <td v-if="data">
-                  <a :href="data.link">Download</a>
+                  <a :href="data.product.link">Download</a>
                 </td>
                 <td>      
                     <v-icon color="blue"
