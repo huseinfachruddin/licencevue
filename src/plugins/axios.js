@@ -7,7 +7,7 @@ import axios from "axios";
 // https://perpustakaanfisip.herokuapp.com
 axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || 'https://lisensi.ruasdigital.id';
 axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('token');
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';  
 axios.defaults.headers.post['withCredentials'] = 'true';
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';

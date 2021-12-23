@@ -191,7 +191,7 @@
     methods: {
       async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id)
+                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }
@@ -201,7 +201,7 @@
       },
       async getAccount(){
             try{
-                let response = await axios.get('/api/account')
+                let response = await axios.get('/api/account',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.account=response.data.account
                 }
@@ -211,7 +211,7 @@
       },
       async getChannel(){
             try{
-                let response = await axios.get('/api/channel')
+                let response = await axios.get('/api/channel',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.channel=response.data.channel
                 }
@@ -227,9 +227,9 @@
               total :this.total
             }
             try{
-                let response = await axios.put('/api/order/'+data.id,data)
+                let response = await axios.put('/api/order/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                  this.$router.push('/user/invoice/'+data.id)
+                  this.$router.push('/user/invoice/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 }
             }catch(errors){
                 console.log(errors)            
