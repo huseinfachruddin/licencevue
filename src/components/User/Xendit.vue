@@ -69,9 +69,13 @@
               <tr>
                 <td>Code pembayaran</td>
                 <td>
-                  <strong>
-                 {{data.paid_code}}
+                  <strong v-if="invoice.payment_code">
+                    {{invoice.payment_code}}
                   </strong>
+                  <strong v-if="invoice.account_number">
+                    {{invoice.account_number}}
+                  </strong>
+                  <a v-if="invoice.actions" :href="invoice.actions.desktop_web_checkout_url" target="_blank">BAYAR DISINI</a>
                 </td>
               </tr>
               <tr>
