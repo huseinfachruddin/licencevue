@@ -49,8 +49,8 @@
                 <td v-if="data">{{data.name}}</td>
                 <td v-if="data">"{{data.order.suborder[0].package.name}}"</td>
                 <td v-if="data">{{data.account.name}}-{{data.account.num_account}}-{{data.account.bank}}</td>
-                <td v-if="data">"{{data.paid}}"</td>
-                <td v-if="data">"{{data.date}}"</td>
+                <td v-if="data">{{data.paid}}</td>
+                <td v-if="data">{{data.date}}</td>
                 <td>      
                     <v-icon color="blue"
                       class="ma-1" 

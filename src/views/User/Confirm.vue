@@ -142,7 +142,8 @@ export default{
         let data={
           order_id:this.$route.params.id,
           account_id:form.account_id,
-          paid:form.paid
+          paid:form.paid,
+          date:form.date
         }
             try{
                 let response = await axios.post('/api/transfer',data)
