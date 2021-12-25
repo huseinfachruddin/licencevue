@@ -54,11 +54,16 @@
                 <td v-if="data">{{data.name}}</td>
                 <td v-if="data">{{data.token}}</td>
                 <td>      
-                    <v-icon color="red"
+                    <v-icon color="blue"
+                      class="ma-1" 
+                      @click="dialog =true,edit=data">
+                      mdi-pencil
+                    </v-icon> 
+                    <!-- <v-icon color="red"
                       class="ma-1" 
                       @click="deleteApi(data)">
                       mdi-delete
-                    </v-icon>
+                    </v-icon> -->
                 </td>
               </tr>
             </tbody>
