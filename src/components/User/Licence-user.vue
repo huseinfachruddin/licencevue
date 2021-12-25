@@ -72,7 +72,7 @@
                 <td v-if="data">
                   <a :href="data.product.link">Download</a>
                 </td>
-                <td>      
+                <td>
                     <v-icon color="blue"
                       class="ma-1"
                       href="#domain">

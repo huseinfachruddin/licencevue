@@ -53,13 +53,41 @@
                 <td>
                     <v-text-field
                       class="mt-3"
-                      type="number"
                       small
                       dense
                       outlined
                       v-model="form.paid"
                       label="Masukan Nominal..."
                     ></v-text-field>
+                </td>
+              </tr>
+              <tr>
+                <td>Tanggal transfer</td>
+                <td>
+                  <v-menu
+                    ref="menu"
+                    :close-on-content-click="true"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        small
+                        dense
+                        outlined
+                        v-model="form.date"
+                        label="Tanggal transfer"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="form.date"
+                    ></v-date-picker>
+                  </v-menu>
                 </td>
               </tr>
               <tr>
