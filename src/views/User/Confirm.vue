@@ -127,7 +127,7 @@ export default{
       },
     async getAccount(){
             try{
-                let response = await axios.get('/api/account/')
+                let response = await axios.get('/api/account')
                 if (response.status == 200) {
                   this.account=response.data.account
                 }

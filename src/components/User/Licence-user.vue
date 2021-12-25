@@ -36,7 +36,10 @@
             <thead>
               <tr>
                 <th class="text-left">
-                  Nama Product
+                  Nama Produk
+                </th>
+                <th class="text-left">
+                  Kode produk
                 </th>
                 <th class="text-left">
                   Lisensi
@@ -61,7 +64,8 @@
                 :key="index"
                 @click="domain=data.domain,domain.licence=data.licence"
               >
-                <td v-if="data">{{data.product.name}}({{data.product.code}})</td>
+                <td v-if="data">{{data.product.name}}</td>
+                <td v-if="data">{{data.product.code}}</td>
                 <td v-if="data">{{data.licence}}</td>
                 <td v-if="data">{{data.max_domain}}</td>
                 <td v-if="data">{{data.due}}</td>

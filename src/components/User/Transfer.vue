@@ -46,8 +46,18 @@
                 </money-format>
                 </td>
               </tr>
+              <tr>
+                <td>Kode unik</td>
+                <td>
+                  <money-format :value="code" 
+                  locale="id" 
+                  currency-code="IDR" 
+                  >
+                </money-format>
+                </td>
+              </tr>
               <tr class="yellow">
-                <td>TOTAL + Kode unik</td>
+                <td>TOTAL</td>
                 <td>
                   <money-format :value="data.total" 
                   locale="id" 
@@ -99,7 +109,9 @@ import axios from 'axios'
       return {
         data:{},
         account:{},
-        form:{}
+        form:{},
+        code:{},
+        total:{}
       }
     },
     computed:{
@@ -125,7 +137,14 @@ import axios from 'axios'
                 let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
+                let total = 0;
+                this.data.suborder.forEach(e => {
+                    total = total + e.total*e.amount
+                });
+                this.code = this.data.total-total
+                  this.total = this.data.total;
                 }
+                
             }catch(errors){
                 console.log(errors)            
             }
