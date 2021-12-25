@@ -163,6 +163,14 @@
                   <v-list-item-title >Metode pembayaran</v-list-item-title>
                 </v-list-item>
             </router-link>
+            <router-link to="/api" style="text-decoration: none;" >
+                <v-list-item>
+                  <v-icon>
+                    mdi-textbox-password
+                  </v-icon>
+                  <v-list-item-title >Api token</v-list-item-title>
+                </v-list-item>
+            </router-link>
           </div>
           <v-list-item>
             <v-list-item-title >

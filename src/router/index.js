@@ -19,6 +19,7 @@ import Order from '../views/Admin/Order.vue'
 import Account from '../views/Admin/Account.vue'
 import Confirm from '../views/Admin/Confirm.vue'
 import Channel from '../views/Admin/Channel.vue'
+import Api from '../views/Admin/Api.vue'
 import detailOrder from '../views/Admin/Order-detail.vue'
 
 import userLicence from '../views/User/Licence.vue'
@@ -156,6 +157,16 @@ const routes = [
       auth:true,
       permision:'admin',
       title:'Data order'
+    },
+  },
+  {
+    path: '/api',
+    name: 'api',
+    component: Api,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data api'
     },
   },
   {
