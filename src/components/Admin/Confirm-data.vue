@@ -33,6 +33,12 @@
                 <th class="text-left">
                   Rekening tujuan
                 </th>
+                <th class="text-left">
+                  Jumlah transfer
+                </th>
+                <th class="text-left">
+                  Tanggal transfer
+                </th>
               </tr>
             </thead>
             <tbody v-if="!loading">
@@ -40,9 +46,11 @@
                 v-for="data,index in data"
                 :key="index"
               >
-                <td v-if="data">{{data.order.user.name}}</td>
+                <td v-if="data">{{data.name}}</td>
                 <td v-if="data">"{{data.order.suborder[0].package.name}}"</td>
                 <td v-if="data">{{data.account.name}}-{{data.account.num_account}}-{{data.account.bank}}</td>
+                <td v-if="data">"{{data.paid}}"</td>
+                <td v-if="data">"{{data.date}}"</td>
                 <td>      
                     <v-icon color="blue"
                       class="ma-1" 
