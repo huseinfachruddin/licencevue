@@ -48,9 +48,17 @@
                 {{error}}
                 </v-alert>
             </div>
-            <div class="d-flex justify-end">              
+            <div class="d-flex"> 
+            <router-link to="/register" style="text-decoration: none;">
             <v-btn
-            v-if="!loading"
+              small
+              color="info"
+              >
+              register
+            </v-btn>            
+            </router-link>
+            <v-spacer></v-spacer>
+            <v-btn
             type="submit"
             @click="login(form)"
             @keyup.enter="login(form)"
@@ -59,19 +67,10 @@
             >
             Login
             </v-btn>
-            <v-btn
-            v-if="loading"
-            disabled
-            @click="login(form)"
-            color="success"
-            small
-            >
-            Login
-            </v-btn>
             </div>
-            <router-link to="/register" style="text-decoration: none;">
-                <p class="ma-5 white--text">Buat akun baru...</p>
-            </router-link>
+            <v-row>
+              <a class="ma-5 white--text" @click="forgot(form)" >Lupa password...</a>
+            </v-row>
         </div>
       </v-flex>
     </v-layout>
@@ -103,6 +102,9 @@ export default {
     methods: {
       login(form){
         return this.$store.dispatch('login',form)
+      },
+      forgot(form){
+        return this.$store.dispatch('forgot',form)
       },
     },
     mounted() {

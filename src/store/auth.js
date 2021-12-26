@@ -51,6 +51,19 @@ export default{
                 commit('setLoading',false)
             }
         },
+        async forgot({commit},data) {
+            commit('setLoading',true)
+            try {
+              let response = await axios.post("/api/forgot",data);
+              if (response.status == 200) {
+                confirm('Password baru telah dikirimkan ke nomor whatsapp '+response.data.user.phone+', silahkan cek dan login kembali.');
+                commit('setLoading',false)
+                }
+            } catch (errors) {
+                commit('setErrors',errors.response.data.errors)
+                commit('setLoading',false)
+            }
+        },
         async register({commit},data){
             commit('setLoading',true)
             try {
