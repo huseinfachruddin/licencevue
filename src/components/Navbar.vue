@@ -60,7 +60,7 @@
                   <v-icon>
                     mdi-apps
                   </v-icon>
-                <v-list-item-title >Produk kami</v-list-item-title>
+                <v-list-item-title >Beli Produk</v-list-item-title>
               </v-list-item>
           </router-link>
           <div v-if="role!=null">
@@ -77,7 +77,7 @@
                   <v-icon>
                     mdi-cart
                   </v-icon>
-                <v-list-item-title >Keranjang anda</v-list-item-title>
+                <v-list-item-title >Keranjang Anda</v-list-item-title>
               </v-list-item>
           </router-link>
           <router-link to="/user/order" style="text-decoration: none;" >
@@ -85,7 +85,7 @@
                   <v-icon>
                     mdi-cart-plus
                   </v-icon>
-                <v-list-item-title >Pesanan anda</v-list-item-title>
+                <v-list-item-title >Pesanan Anda</v-list-item-title>
               </v-list-item>
           </router-link>
           </div>
