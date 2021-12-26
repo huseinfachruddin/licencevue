@@ -68,11 +68,18 @@
             Login
             </v-btn>
             </div>
+            <div class="d-flex">
             <v-row>
             <router-link to="/forgot" style="text-decoration: none;">
-              <a class="ma-5 white--text">Lupa password...</a>
+              <v-btn
+              small
+              color="info"
+              >
+              Lupa password...
+            </v-btn>
             </router-link>
             </v-row>
+            </div>
         </div>
       </v-flex>
     </v-layout>
