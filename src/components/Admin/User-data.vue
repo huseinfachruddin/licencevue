@@ -37,6 +37,9 @@
                   Nama
                 </th>
                 <th class="text-left">
+                  Username
+                </th>
+                <th class="text-left">
                   Email
                 </th>
                 <th class="text-left">
@@ -56,6 +59,7 @@
                 :key="index"
               >
                 <td><span v-if="data.greeting">{{data.greeting}}</span> {{data.fullname}}</td>
+                <td>{{data.name}}</td>
                 <td>{{data.email}}</td>
                 <td>{{data.phone}}</td>
                 <td>                

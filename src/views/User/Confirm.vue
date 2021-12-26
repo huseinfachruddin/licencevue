@@ -149,6 +149,7 @@ export default{
                 let response = await axios.post('/api/transfer',data)
                 if (response.status == 200) {
                     alert('Anda telah melakukan konfirmasi pembayaran,Tunggu konfirmasi dari admin')
+                this.form={}
                 }
             }catch(errors){
                 this.errors=errors.response.data.errors           

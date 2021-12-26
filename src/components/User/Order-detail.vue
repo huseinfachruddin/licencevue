@@ -176,6 +176,7 @@
 <script>
   import axios from 'axios'
   import MoneyFormat from 'vue-money-format'
+  import router from '../../router'
 
   export default {
   components:{
@@ -240,7 +241,7 @@
             try{
                 let response = await axios.put('/api/order/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                  this.$router.push('/user/invoice/'+data.id)
+                  router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
                 console.log(errors)            
@@ -256,7 +257,7 @@
             try{
                 let response = await axios.post('/api/xendit/payment',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
-                  this.$router.push('/user/invoice/'+data.id)
+                  router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
                 console.log(errors)            
