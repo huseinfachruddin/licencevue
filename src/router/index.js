@@ -4,6 +4,7 @@ import vuerouter from 'vue-router'
 
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Forgot from '../views/Forgot.vue'
 
 import Profile from '../views/Profile.vue'
 
@@ -49,6 +50,14 @@ const routes = [
     component:Register,
     meta:{
       title:'Register'
+    }
+  },
+  {
+    path: '/forgot',
+    name: 'forgot',
+    component:Forgot,
+    meta:{
+      title:'Lupa password'
     }
   },
   {

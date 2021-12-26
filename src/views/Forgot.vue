@@ -5,9 +5,9 @@
     <v-layout row wrap align-center justify-center>
       <v-flex md6 sm8 >
 
-        <div class="pa-5" @keyup.enter="login(form)">
-        <h2 class="text-center ma-5 white--text">Login</h2>
-          <div  >
+        <div class="pa-5" @keyup.enter="forgot(form)">
+        <h2 class="text-center ma-5 white--text">Lupa password</h2>
+          <div>
             <v-alert
             dense
             type="error"
@@ -31,48 +31,18 @@
                 {{error}}
                 </v-alert>
             </div>
-            <div>
-            <v-text-field
-              dense
-              outlined
-              solo
-              type="password"
-              v-model="form.password"
-              label="Password"
-            ></v-text-field>
-                <v-alert
-                dense
-                type="error"
-                v-for="error in errors.password" 
-                :key="error">
-                {{error}}
-                </v-alert>
-            </div>
             <div class="d-flex"> 
-            <router-link to="/register" style="text-decoration: none;">
-            <v-btn
-              small
-              color="info"
-              >
-              register
-            </v-btn>            
-            </router-link>
             <v-spacer></v-spacer>
             <v-btn
             type="submit"
-            @click="login(form)"
-            @keyup.enter="login(form)"
+            @click="forgot(form)"
+            @keyup.enter="forgot(form)"
             color="success"
             small
             >
-            Login
+            Konfirmasi
             </v-btn>
             </div>
-            <v-row>
-            <router-link to="/forgot" style="text-decoration: none;">
-              <a class="ma-5 white--text">Lupa password...</a>
-            </router-link>
-            </v-row>
         </div>
       </v-flex>
     </v-layout>
@@ -102,9 +72,6 @@ export default {
       },
     },
     methods: {
-      login(form){
-        return this.$store.dispatch('login',form)
-      },
       forgot(form){
         return this.$store.dispatch('forgot',form)
       },
