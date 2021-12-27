@@ -109,7 +109,7 @@
           small
           outlined
           v-model="edit.url"
-          label="Token..."
+          label="URL..."
         ></v-text-field>
       </v-card-text>
 
