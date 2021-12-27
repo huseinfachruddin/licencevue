@@ -9,6 +9,7 @@ import Forgot from '../views/Forgot.vue'
 import Profile from '../views/Profile.vue'
 
 import Home from '../views/Home.vue'
+import Support from '../views/Support.vue'
 import Admin from '../views/Admin/Admin.vue'
 import User from '../views/Admin/User.vue'
 import Role from '../views/Admin/Role.vue'
@@ -65,7 +66,15 @@ const routes = [
     name: 'home',
     component: Home,
     meta:{
-      title:'Admin'
+      title:'Halaman home'
+    }
+  },
+  {
+    path: '/support',
+    name: 'support',
+    component: Support,
+    meta:{
+      title:'bantuan kami'
     }
   },
   {
