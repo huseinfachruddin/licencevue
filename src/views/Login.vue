@@ -68,8 +68,7 @@
             Login
             </v-btn>
             </div>
-            <div class="d-flex">
-            <v-row>
+            <div class="d-flex mt-2">
             <router-link to="/forgot" style="text-decoration: none;">
               <v-btn
               small
@@ -78,7 +77,6 @@
               Lupa password...
             </v-btn>
             </router-link>
-            </v-row>
             </div>
         </div>
       </v-flex>
