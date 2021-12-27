@@ -42,6 +42,9 @@
                   Token
                 </th>
                 <th class="text-left">
+                  Url API
+                </th>
+                <th class="text-left">
                   Aksi
                 </th>
               </tr>
@@ -53,6 +56,7 @@
               >
                 <td v-if="data">{{data.name}}</td>
                 <td v-if="data">{{data.token}}</td>
+                <td v-if="data">{{data.url}}</td>
                 <td>      
                     <v-icon color="blue"
                       class="ma-1" 
@@ -99,6 +103,12 @@
           small
           outlined
           v-model="edit.token"
+          label="Token..."
+        ></v-text-field>
+        <v-text-field
+          small
+          outlined
+          v-model="edit.url"
           label="Token..."
         ></v-text-field>
       </v-card-text>
