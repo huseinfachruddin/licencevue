@@ -62,31 +62,27 @@
           <v-dialog v-model="dialog" width="500">
             <v-card>
               <v-card-title class="text-h5 orange lighten-2">
-                Product
+                Data HTML
               </v-card-title>
               <v-card-text class="pa-3">
                 <v-alert type="error" v-for="[error] in errors" :key="error">
                   {{ error }}
                 </v-alert>
-                <v-text-field
+                <v-select
                   small
-                  outlined
+                  dense
+                  :items="code"
+                  label="Nama kode..."
                   v-model="edit.name"
-                  label="Nama pemilik"
-                ></v-text-field>
-                <v-text-field
-                  small
                   outlined
-                  v-model="edit.bank"
-                  label="Nama bank"
-                ></v-text-field>
-                <v-text-field
+                ></v-select>
+                <v-textarea
                   small
                   type="number"
                   outlined
-                  v-model="edit.num_account"
-                  label="Nomer rekening"
-                ></v-text-field>
+                  v-model="edit.html"
+                  label="Html code..."
+                ></v-textarea>
               </v-card-text>
 
               <v-divider></v-divider>
@@ -100,7 +96,7 @@
                   v-if="edit.id"
                   color="primary"
                   small
-                  @click="editAccount(edit)"
+                  @click="editHtml(edit)"
                 >
                   simpan data
                 </v-btn>
@@ -108,7 +104,7 @@
                   v-if="!edit.id"
                   color="primary"
                   small
-                  @click="createAccount(edit)"
+                  @click="createHtml(edit)"
                 >
                   simpan data
                 </v-btn>
@@ -132,6 +128,7 @@ export default {
       edit: false,
       data: [],
       errors: [],
+      code:['header','footer']
     };
   },
   computed: {

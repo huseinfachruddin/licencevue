@@ -175,7 +175,7 @@
                 <v-icon>
                   mdi-web
                 </v-icon>
-                <v-list-item-title>Api token</v-list-item-title>
+                <v-list-item-title>HTML Code</v-list-item-title>
               </v-list-item>
             </router-link>
           </div>

@@ -1,5 +1,5 @@
 <template>
-  <div v-html="data"></div>
+  <div v-html="data.html"></div>
 </template>
 
 <script>
@@ -8,15 +8,16 @@ import axios from "axios";
 export default {
   data() {
     return {
-      data: "",
+      data: {},
     };
   },
-  methods:{
-    async footer() {
+  methods: {
+    async header() {
       try {
-        let response = await axios.get("/api/html/footer");
+        let response = await axios.get("/api/html/header");
         if (response.status == 200) {
-          this.data = response.data.html.html;
+          this.data = response.data.html;
+          console.log
         }
       } catch (errors) {
         console.log(errors);
@@ -25,7 +26,7 @@ export default {
     },
   },
   mounted() {
-    this.footer()
+    this.header();
   },
 };
 </script>
