@@ -5,6 +5,7 @@
     <v-container fluid class="bg">
         <router-view temporary/>  
     </v-container>
+    <Footer/>
   </v-app>
 </template>
 
@@ -28,11 +29,13 @@ router-link a{
 <script>
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
+import Footer from './components/Footer'
 
 export default {
   components:{
     Navbar,
     Loading,
+    Footer
   },
   mounted(){
 

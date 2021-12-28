@@ -22,6 +22,7 @@ import Account from '../views/Admin/Account.vue'
 import Confirm from '../views/Admin/Confirm.vue'
 import Channel from '../views/Admin/Channel.vue'
 import Api from '../views/Admin/Api.vue'
+import Html from '../views/Admin/Html.vue'
 import detailOrder from '../views/Admin/Order-detail.vue'
 
 import userLicence from '../views/User/Licence.vue'
@@ -115,6 +116,16 @@ const routes = [
       auth:true,
       permision:'admin',
       title:'Data Account'
+  }
+  },
+  {
+    path: '/html',
+    name: 'html',
+    component: Html,
+    meta:{
+      auth:true,
+      permision:'admin',
+      title:'Data HTML Injeksi'
   }
   },
   {
