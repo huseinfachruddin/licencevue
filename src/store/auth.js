@@ -58,6 +58,7 @@ export default{
               if (response.status == 200) {
                 confirm('Password baru telah dikirimkan ke nomor whatsapp '+response.data.user.phone+', silahkan cek dan login kembali.');
                 commit('setLoading',false)
+                return router.push('/login');
                 }
             } catch (errors) {
                 commit('setErrors',errors.response.data.errors)

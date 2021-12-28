@@ -115,7 +115,7 @@
 <script>
 
 import axios from 'axios'
-
+import router from '../../router'
 export default{
   components:{
   },
@@ -149,7 +149,8 @@ export default{
                 let response = await axios.post('/api/transfer',data)
                 if (response.status == 200) {
                     alert('Anda telah melakukan konfirmasi pembayaran,Tunggu konfirmasi dari admin')
-                this.form={}
+                    this.form={}
+                    router.push('/user/order/'+this.$route.params.id)
                 }
             }catch(errors){
                 this.errors=errors.response.data.errors           

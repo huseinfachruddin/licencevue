@@ -244,7 +244,8 @@
                   router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
-                console.log(errors)            
+                console.log(errors)           
+                router.push('/user/invoice/'+data.id) 
             }
       },
       async payByXendit(form){
@@ -260,7 +261,9 @@
                   router.push('/user/invoice/'+data.id)
                 }
             }catch(errors){
-                console.log(errors)            
+                console.log(errors)     
+                  router.push('/user/invoice/'+data.id)
+       
             }
       }
     },

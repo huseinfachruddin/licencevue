@@ -62,12 +62,12 @@
                 </v-alert>
             </div>
             <div>
-            <v-text-field
+              <v-text-field
               dense
               outlined
               solo
               v-model="form.phone"
-              label="Nomor WA"
+              label="Phone..."
               >
               </v-text-field>
                 <v-alert
@@ -158,6 +158,7 @@
 
 <script>
 export default {
+
   data(){
     return{
     }
@@ -176,7 +177,10 @@ export default {
   methods:{
     async register(form){
       this.$store.dispatch('register',form)
-    }
+    },
+ 
+  },
+  mounted(){
   }
 }
 </script>
