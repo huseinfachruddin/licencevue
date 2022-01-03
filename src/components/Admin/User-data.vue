@@ -133,7 +133,7 @@
           small
           outlined
           v-model="edit.fullname"
-          label="Nma Lengkap"
+          label="Nama Lengkap"
         ></v-text-field>
         <v-text-field
           small
@@ -150,6 +150,7 @@
         <v-text-field
           small
           outlined
+          type="number"
           v-model="edit.phone"
           label="No.Telpon"
         ></v-text-field>
@@ -238,8 +239,11 @@ import axios from 'axios'
         await this.getUser(this.data.current_page)
       },
       async deleteUser(data){
-        await this.$store.dispatch('deleteUser',data);
-        await this.getUser(this.data.current_page)
+        if (confirm('yakin untuk menghapus user ?')) {
+          await this.$store.dispatch('deleteUser',data);
+          await this.getUser(this.data.current_page)
+          
+        }
       }
     },
     mounted() {

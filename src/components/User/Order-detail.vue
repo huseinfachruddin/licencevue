@@ -151,7 +151,7 @@
                 <v-btn
                   color="success"
                   v-if="active"
-                  @click="payByXendit(form.channel)"
+                  @click="payByXendit(form.channel) "
                 >
                   Bayar melalui xendit
                 </v-btn>

@@ -66,8 +66,9 @@
               dense
               outlined
               solo
+              type="number"
               v-model="form.phone"
-              label="Phone..."
+              label="Nomor Whatsapp..."
               >
               </v-text-field>
                 <v-alert
