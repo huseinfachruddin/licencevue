@@ -80,7 +80,7 @@
                     </v-icon> 
                     <v-icon color="red"
                       class="ma-1" 
-                      @input="deleteUser(data)"
+                      @click="deleteUser(data)"
                       >
                       mdi-delete
                     </v-icon> 
@@ -235,6 +235,10 @@ import axios from 'axios'
       },
       async editUser(data){
         await this.$store.dispatch('editUser',data);
+        await this.getUser(this.data.current_page)
+      },
+      async deleteUser(data){
+        await this.$store.dispatch('deleteUser',data);
         await this.getUser(this.data.current_page)
       }
     },

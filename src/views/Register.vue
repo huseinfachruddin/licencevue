@@ -178,7 +178,6 @@ export default {
     async register(form){
       this.$store.dispatch('register',form)
     },
- 
   },
   mounted(){
   }

@@ -1,12 +1,10 @@
 <template>
   <v-app>
     <Loading/>
-    <!-- <Header/> -->
     <Navbar v-if="this.$router.currentRoute.path!=='/register' && this.$router.currentRoute.path!=='/login'"/>
     <v-container fluid class="bg">
         <router-view temporary/>  
     </v-container>
-    <!-- <Footer/> -->
   </v-app>
 </template>
 
@@ -30,15 +28,11 @@ router-link a{
 <script>
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
-// import Footer from './components/Footer'
-// import Header from './components/Header'
 
 export default {
   components:{
     Navbar,
     Loading,
-    // Footer,
-    // Header
   },
   mounted(){
 

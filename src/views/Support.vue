@@ -10,8 +10,7 @@
             </v-card-title>
 
             <v-card-subtitle>
-               <p>WA : <a href="https://api.whatsapp.com/send?phone=6281311661479">081311661479</a></p>
-               
+              <p>WA : <a href="https://api.whatsapp.com/send?phone=6281311661479">081311661479</a></p>
               <p>Email : mail@asrofi.com</p>
                </v-card-subtitle>
 

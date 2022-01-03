@@ -47,6 +47,19 @@ export default{
                 commit('setErrors',errors.response.data.errors)
                 commit('setLoading',false)
             }
+        },
+        async deleteUser({commit},data){
+            commit('setLoading',true)
+            try{
+                let response = await axios.delete('/api/user/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                    commit('setLoading',false)
+                    alert('Data berhasil dihapus')
+                }
+            }catch(errors){
+                commit('setErrors',errors.response.data.errors)
+                commit('setLoading',false)
+            }
         }, 
       
     }
