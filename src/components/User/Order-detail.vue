@@ -151,7 +151,7 @@
                 <v-btn
                   color="success"
                   v-if="active"
-                  @click="payByXendit(form)"
+                  @click="payByXendit(form.channel)"
                 >
                   Bayar melalui xendit
                 </v-btn>
@@ -203,7 +203,9 @@
     methods: {
       async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/order/'+this.$route.params.id,
+                {headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+                })
                 if (response.status == 200) {
                   this.data=response.data.order
                 }
@@ -213,7 +215,9 @@
       },
       async getAccount(){
             try{
-                let response = await axios.get('/api/account',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/account',
+                {headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+                })
                 if (response.status == 200) {
                   this.account=response.data.account
                 }
@@ -223,7 +227,9 @@
       },
       async getChannel(){
             try{
-                let response = await axios.get('/api/channel',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/channel',
+                {headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+                })
                 if (response.status == 200) {
                   this.channel=response.data.channel
                 }
@@ -251,7 +257,7 @@
       async payByXendit(form){
             let data = {
               id : this.$route.params.id,
-              channel : form.channel,
+              channel : form,
               total : this.total,
               redirect : window.location.origin+'/user/invoice/'+this.$route.params.id
             }
@@ -262,7 +268,7 @@
                 }
             }catch(errors){
                 console.log(errors)     
-                  router.push('/user/invoice/'+data.id)
+                  // router.push('/user/invoice/'+data.id)
        
             }
       }

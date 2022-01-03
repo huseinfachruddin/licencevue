@@ -118,7 +118,7 @@ export default {
         id: this.data.paid_code,
       };
       try {
-        let response = await axios.post("/api/xendit/invoice", form, {headers: { Authorization: "Bearer " + localStorage.getItem("token")}});
+        let response = await axios.post("/api/xendit/invoice",form, {headers: { Authorization: "Bearer " + localStorage.getItem("token")}});
         if (response.status == 200) {
           this.invoice = response.data.xendit;
           console.log(this.invoice);
