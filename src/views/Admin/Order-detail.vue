@@ -32,7 +32,7 @@ export default{
   methods:{
     async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id)
+                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data
                   console.log(this.data)
