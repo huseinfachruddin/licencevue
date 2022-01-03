@@ -87,7 +87,7 @@
                 <v-pagination
                   v-model="data.current_page"
                   :length="data.last_page"
-                  @input="getLicence(data)"
+                  @input="getLicence(data.current_page)"
                 ></v-pagination>
               </div>
     </v-card>
@@ -177,7 +177,7 @@ import axios from 'axios'
     },
     methods: {
       async getLicence(data){
-        await this.$store.dispatch('licence',data.current_page);
+        await this.$store.dispatch('licence',data);
       },
       async deleteLicence(data){
         if (confirm("Yakin Akan menghapus lisensi")) {

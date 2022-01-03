@@ -104,7 +104,7 @@ import axios from 'axios'
     methods: {
       async getInvoice(){
             try{
-                let response = await axios.post('/api/xendit/invoice?id='+this.$route.params.id)
+                let response = await axios.post('/api/xendit/invoice?id='+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     this.invoice=response.data.xendit
                 }
@@ -114,7 +114,7 @@ import axios from 'axios'
       },
       async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id)
+                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }

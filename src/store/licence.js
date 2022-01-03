@@ -23,10 +23,10 @@ export default{
         },
     },
     actions:{
-        async licence({commit}){
+        async licence({commit},data){
             commit('setLoading',true)
             try{
-                let response = await axios.get('/api/licence',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/licence?page='+data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     commit('setData',response.data.licence)
                     commit('setLoading',false)
