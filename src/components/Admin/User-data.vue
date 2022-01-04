@@ -242,7 +242,6 @@ import axios from 'axios'
         if (confirm('yakin untuk menghapus user ?')) {
           await this.$store.dispatch('deleteUser',data);
           await this.getUser(this.data.current_page)
-          
         }
       }
     },

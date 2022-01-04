@@ -55,7 +55,7 @@
                 <td v-if="data">{{data.id}}</td>          
                 <td><span v-if="data.user.greeting">{{data.user.greeting}}</span> {{data.user.fullname}}</td>
                 <td v-if="data">{{data.user.phone}}</td>
-                <td v-if="data">{{data.suborder[0].package.product.name}} {{data.suborder[0].package.name}}</td>
+                <td v-if="data.suborder[0]">{{data.suborder[0].package.product.name}} {{data.suborder[0].package.name}}</td>
                 <td v-if="data">
                 <money-format :value="data.total" 
                   locale="id" 
