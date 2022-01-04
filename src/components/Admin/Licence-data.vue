@@ -61,7 +61,8 @@
                 :key="index"
                 @click="domain=data.domain,domain.licence=data.licence"
               >
-                <td v-if="data">{{data.user.name}}</td>
+                <td v-if="data.user">{{data.user.name}}</td>
+                <td v-if="!data.user"></td>
                 <td v-if="data">{{data.product.name}}({{data.product.code}})</td>
                 <td v-if="data">{{data.licence}}</td>
                 <td v-if="data">{{data.max_domain}}</td>
