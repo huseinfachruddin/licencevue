@@ -75,8 +75,15 @@
                     </v-icon> 
                     <v-icon color="red"
                       class="ma-1" 
+                      v-if="!data.deleted_at"
                       @click="deleteProduct(data)">
                       mdi-delete
+                    </v-icon>
+                    <v-icon color="red"
+                      v-if="data.deleted_at"
+                      class="ma-1" 
+                      @click="deleteProduct(data)">
+                      mdi-backup-restore
                     </v-icon>
                 </td>
               </tr>
@@ -172,19 +179,18 @@
 </div>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data () {
       return {
         success: false,
         model: null,
         dialog: false,
-        edit: false
+        edit: false,
+        data:[]
       }
     },
     computed:{
-      data(){
-        return this.$store.state.product.product.data;        
-      },
       errors(){
         return this.$store.state.product.product.error;
       },
@@ -197,8 +203,14 @@
     },
     methods: {
       async getProduct(data){
-        await this.$store.dispatch('product',data.current_page);
-      },
+            try{
+                let response = await axios.get('/api/product?page='+data+'&admin='+true)
+                if (response.status == 200) {
+                    this.data = response.data.product
+                }
+            }catch(errors){
+               console.log(errors)
+            }      },
       async editProduct(data){
         await this.$store.dispatch('editProduct',data)
         this.getProduct(this.data.current_page)
@@ -208,7 +220,13 @@
         this.getProduct(this.data.current_page)
       },
       async deleteProduct(data){
-        if (confirm("Yakin Akan menghapus produk")) {
+        var msg = null;
+        if(data.deleted_at==null){
+          msg = 'Yakin Akan menghapus produk'
+        }else{
+          msg = 'Yakin Akan restore produk'
+        }
+        if (confirm(msg)) {
           await this.$store.dispatch('deleteProduct',data)
           this.getProduct(this.data.current_page)
         }
