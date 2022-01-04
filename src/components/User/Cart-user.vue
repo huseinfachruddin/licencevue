@@ -63,7 +63,7 @@
                 </td>
                 <td>
           <v-btn
-            v-if="data.id"
+            v-if="data.subcart[0]"
             color="primary"
             @click="createOrder(data)"
           >
