@@ -62,6 +62,20 @@
                 </td>
               </tr>
               <tr>
+                <td>Nama Pengirim
+                </td>
+                <td>
+                    <v-text-field
+                      class="mt-3"
+                      small
+                      dense
+                      outlined
+                      v-model="form.name"
+                      label="Masukan nama pengirim"
+                    ></v-text-field>
+                </td>
+              </tr>
+              <tr>
                 <td>Tanggal transfer</td>
                 <td>
                   <v-menu
@@ -143,7 +157,8 @@ export default{
           order_id:this.$route.params.id,
           account_id:form.account_id,
           paid:form.paid,
-          date:form.date
+          date:form.date,
+          name:form.name
         }
             try{
                 let response = await axios.post('/api/transfer',data)
