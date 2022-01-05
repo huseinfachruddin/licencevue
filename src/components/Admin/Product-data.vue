@@ -204,7 +204,7 @@ import axios from 'axios'
     methods: {
       async getProduct(data){
             try{
-                let response = await axios.get('/api/product?page='+data+'&admin='+true)
+                let response = await axios.get('/api/product?page='+data+'&admin='+true,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     this.data = response.data.product
                 }

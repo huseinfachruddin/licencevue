@@ -89,7 +89,7 @@ import axios from 'axios'
     methods: {
       async getOrder(){
             try{
-                let response = await axios.get('/api/order/'+this.$route.params.id)
+                let response = await axios.get('/api/order/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }
@@ -99,7 +99,7 @@ import axios from 'axios'
       },
       async getChannel(){
             try{
-                let response = await axios.get('/api/xendit/channel')
+                let response = await axios.get('/api/xendit/channel',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.channel=response.data.xendit
                 }
@@ -114,7 +114,7 @@ import axios from 'axios'
               total : this.data.total
             }
             try{
-                let response = await axios.post('/api/xendit/payment',data)
+                let response = await axios.post('/api/xendit/payment',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.getOrder()
                 }

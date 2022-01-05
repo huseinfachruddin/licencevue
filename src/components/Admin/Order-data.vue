@@ -164,7 +164,7 @@
     methods: {
       async getOrder(){
             try{
-                let response = await axios.get('/api/order')
+                let response = await axios.get('/api/order',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }
@@ -174,7 +174,7 @@
       },
       async editOrder(data){
             try{
-              if (confirm('yakin merubah status pembayaran menjadi'+data.status)) {
+              if (confirm('yakin merubah status pembayaran menjadi'+data.status),{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}}) {
                 let response = await axios.put('/api/order/'+data.id,data)
                 if (response.status == 200) {
                   this.data=response.data.order
@@ -190,7 +190,7 @@
               
               if (confirm('Yakin ingin menghapus data')) {
                 
-                let response = await axios.delete('/api/order/'+data.id)
+                let response = await axios.delete('/api/order/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.getOrder()
                 }

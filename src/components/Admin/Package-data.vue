@@ -206,7 +206,7 @@
     methods: {
       async getProduct(){
             try{
-                let response = await axios.get('/api/product/'+this.$route.params.id)
+                let response = await axios.get('/api/product/'+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.product
                 }
@@ -216,7 +216,7 @@
       },
       async getPackage(){
             try{
-                let response = await axios.get('/api/package?product_id='+this.$route.params.id)
+                let response = await axios.get('/api/package?product_id='+this.$route.params.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.price=response.data.package
                 }
@@ -229,7 +229,7 @@
       },
       async createPackage(data){
             try {
-                let response = await axios.post('/api/package?product_id='+this.$route.params.id,data)
+                let response = await axios.post('/api/package?product_id='+this.$route.params.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                  this.getPackage()
                   this.getProduct()
@@ -245,7 +245,7 @@
       },
       async editPackage(data){
             try {
-                let response = await axios.put('/api/package?product_id='+this.$route.params.id,data)
+                let response = await axios.put('/api/package?product_id='+this.$route.params.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                  this.getPackage()
                   alert('data berhasil disimpan')
@@ -261,7 +261,7 @@
       async deletePackage(data){
             try {
               if (confirm("Yakin Akan menghapus data")){
-                let response = await axios.delete('/api/package/'+data.id)
+                let response = await axios.delete('/api/package/'+data.id,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                  this.getPackage()
                  this.errors=[]
