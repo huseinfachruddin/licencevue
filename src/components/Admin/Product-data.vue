@@ -30,6 +30,16 @@
         
       </v-toolbar>
       <v-card-text>
+        <v-text-field
+            small
+            outlined
+            v-model="search"
+            dense
+            @keyup.enter="getProduct(data.current_page)"
+            placeholder="Code atau Nama"
+            label="Pencarian Produk..."
+            append-icon="mdi-magnify"
+        ></v-text-field>
       </v-card-text>
       <v-divider></v-divider>
         <v-simple-table>
@@ -187,7 +197,8 @@ import axios from 'axios'
         model: null,
         dialog: false,
         edit: false,
-        data:[]
+        data:[],
+        search:''
       }
     },
     computed:{
@@ -204,7 +215,7 @@ import axios from 'axios'
     methods: {
       async getProduct(data){
             try{
-                let response = await axios.get('/api/product?page='+data+'&admin='+true,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/product?page='+data+'&admin='+true+'&search='+this.search,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                     this.data = response.data.product
                 }

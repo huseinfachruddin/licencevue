@@ -30,6 +30,18 @@
         </router-link>
       </v-toolbar>
       <v-divider></v-divider>
+      <v-card-text>
+        <v-text-field
+            small
+            outlined
+            v-model="search"
+            dense
+            @keyup.enter="searchUser(search)"
+            label="Pencarian User"
+            placeholder="Nama, Email, Fullname"
+            append-icon="mdi-magnify"
+        ></v-text-field>
+      </v-card-text>
         <v-simple-table>
             <thead>
               <tr>
@@ -203,7 +215,8 @@ import axios from 'axios'
         model: null,
         dialog: false,
         edit: false,
-        roles:{}
+        roles:{},
+        search:''
       }
     },
     computed:{
@@ -221,6 +234,9 @@ import axios from 'axios'
       },
     },
     methods: {
+      async searchUser(data){
+        await this.$store.dispatch('searchUser',data);
+      },
       async getUser(data){
         await this.$store.dispatch('user',data.current_page);
       },

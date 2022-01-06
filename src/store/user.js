@@ -35,6 +35,18 @@ export default{
                 commit('setLoading',false)
             }
         },
+        async searchUser({commit},data){
+            commit('setLoading',true)
+            try{
+                let response = await axios.get('/api/user?search='+data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                if (response.status == 200) {
+                    commit('setData',response.data.user)
+                    commit('setLoading',false)
+                }
+            }catch(errors){
+                commit('setLoading',false)
+            }
+        },
         async editUser({commit},data){
             commit('setLoading',true)
             try{

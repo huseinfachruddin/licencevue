@@ -18,6 +18,16 @@
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-card-text>
+        <v-text-field
+            small
+            outlined
+            v-model="search"
+            dense
+            @keyup.enter="getOrder()"
+            label="Pencarian pesanan..."
+            placeholder="id"
+            append-icon="mdi-magnify"
+        ></v-text-field>
       </v-card-text>
       <v-divider></v-divider>
         <v-simple-table>
@@ -159,12 +169,13 @@
         errors:[],
         dialog:false,
         status:['menunggu pembayaran','sudah dibayar','dibatalkan'],
+        search:''
       }
     },
     methods: {
       async getOrder(){
             try{
-                let response = await axios.get('/api/order',{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.get('/api/order?'+'&search='+this.search,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   this.data=response.data.order
                 }
@@ -174,7 +185,7 @@
       },
       async editOrder(data){
             try{
-              if (confirm('yakin merubah status pembayaran menjadi'+data.status),{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}}) {
+              if (confirm('yakin merubah status pembayaran menjadi'+data.status)) {
                 let response = await axios.put('/api/order/'+data.id,data)
                 if (response.status == 200) {
                   this.data=response.data.order

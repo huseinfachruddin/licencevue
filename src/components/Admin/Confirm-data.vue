@@ -19,6 +19,16 @@
         
       </v-toolbar>
       <v-card-text>
+          <v-text-field
+            small
+            outlined
+            v-model="search"
+            dense
+            @keyup.enter="getTransfer()"
+            label="Pencarian pesanan..."
+            placeholder="Nama pengirim"
+            append-icon="mdi-magnify"
+        ></v-text-field>
       </v-card-text>
       <v-divider></v-divider>
         <v-simple-table>
@@ -86,6 +96,7 @@
         edit: false,
         data:[],
         errors:[],
+        search:''
       }
     },
     computed:{
@@ -96,7 +107,7 @@
     methods: {
       async getTransfer(){
             try{
-                let response = await axios.get('/api/transfer')
+                let response = await axios.get('/api/transfer?'+'&search='+this.search)
                 if (response.status == 200) {
                   this.data=response.data.transfer
                 }
