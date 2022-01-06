@@ -245,7 +245,7 @@
       },
       async editPackage(data){
             try {
-                let response = await axios.put('/api/package?product_id='+this.$route.params.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
+                let response = await axios.put('/api/package/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                  this.getPackage()
                   alert('data berhasil disimpan')
