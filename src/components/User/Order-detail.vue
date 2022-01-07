@@ -110,6 +110,7 @@
                 <th>
                   <v-btn
                   @click="payByTransfer()"
+                  :loading="loading"
                   color="success"
                   >
                     Bayar melalui transfer
@@ -151,6 +152,7 @@
                 <v-btn
                   color="success"
                   v-if="active"
+                  :loading="loading"
                   @click="payByXendit(form.channel) "
                 >
                   Bayar melalui xendit
@@ -195,7 +197,8 @@
         xendit:{},
         code:null,
         total:null,
-        account:[]
+        account:[],
+        loading:false
       }
     },
     computed:{
@@ -238,6 +241,7 @@
             }
       },
       async payByTransfer(){
+            this.loading = true
             let data = {
               id : this.data.id,
               status : 'menunggu pembayaran',
@@ -248,13 +252,16 @@
                 let response = await axios.put('/api/order/'+data.id,data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   router.push('/user/invoice/'+data.id)
+                  this.loading = false
                 }
             }catch(errors){
                 console.log(errors)           
-                router.push('/user/invoice/'+data.id) 
+                router.push('/user/invoice/'+data.id)
+                this.loading = false
             }
       },
       async payByXendit(form){
+            this.loading = true
             let data = {
               id : this.$route.params.id,
               channel : form,
@@ -265,6 +272,7 @@
                 let response = await axios.post('/api/xendit/payment',data,{headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}})
                 if (response.status == 200) {
                   router.push('/user/invoice/'+data.id)
+                  this.loading = false
                 }
             }catch(errors){
                 console.log(errors)     

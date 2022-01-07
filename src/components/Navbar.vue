@@ -79,8 +79,7 @@
                   <v-list-item-title>Pesanan Anda</v-list-item-title>
                 </v-list-item>
               </router-link>
-            </div>
-            <router-link to="/support" style="text-decoration: none;">
+              <router-link to="/support" style="text-decoration: none;">
               <v-list-item>
                 <v-icon>
                   mdi-help-box
@@ -88,6 +87,7 @@
                 <v-list-item-title>Pusat Bantuan</v-list-item-title>
               </v-list-item>
             </router-link>
+            </div>
           </div>
           <div v-if="role == 'admin'">
             <router-link to="/admin" style="text-decoration: none;">

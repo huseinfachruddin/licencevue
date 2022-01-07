@@ -63,7 +63,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Code pembayaran</td>
+                  <td>Kode Pembayaran</td>
                   <td>
                     <strong v-if="invoice.payment_code">
                       {{ invoice.payment_code }}

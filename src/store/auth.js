@@ -9,6 +9,11 @@ export default{
         },
         loading:false
     },
+    getters: {
+        getForm: (state) => (id) => {
+            return state.todos.find(todo => todo.id === id)
+          }
+    },
     mutations:{
         setForm(state,data){
             state.profile.form=data
