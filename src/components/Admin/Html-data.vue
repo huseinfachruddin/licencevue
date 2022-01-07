@@ -10,14 +10,14 @@
                 Data Ijection HTML code
               </v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn
+              <!-- <v-btn
                 color="primary"
                 small
                 @click="(dialog = true), (edit = {})"
               >
                 <v-icon color="white" class="ma-1" mdi-key> </v-icon>
                 Tambah Baru
-              </v-btn>
+              </v-btn> -->
             </v-toolbar>
             <v-card-text> </v-card-text>
             <v-divider></v-divider>
@@ -44,13 +44,13 @@
                     >
                       mdi-pencil
                     </v-icon>
-                    <v-icon
+                    <!-- <v-icon
                       color="red"
                       class="ma-1"
                       @click="deleteAccount(data)"
                     >
                       mdi-delete
-                    </v-icon>
+                    </v-icon> -->
                   </td>
                 </tr>
               </tbody>
