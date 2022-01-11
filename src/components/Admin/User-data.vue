@@ -127,7 +127,7 @@
         >
         {{error}}
         </v-alert>
-        <v-radio-group row v-model="data.greeting" >
+        <v-radio-group row v-model="edit.greeting" >
           <v-radio
           label="Kak"
           value="Kak"
