@@ -47,9 +47,9 @@
                 <th class="text-left">
                   Max domain
                 </th>
-                <th class="text-left">
+                <!-- <th class="text-left">
                   Kadaluarsa
-                </th>
+                </th> -->
                 <th class="text-left">
                   Link
                 </th>
@@ -68,7 +68,7 @@
                 <td v-if="data">{{data.product.code}}</td>
                 <td v-if="data">{{data.licence}}</td>
                 <td v-if="data">{{data.max_domain}}</td>
-                <td v-if="data">{{data.due}}</td>
+                <!-- <td v-if="data">{{data.due}}</td> -->
                 <td v-if="data">
                   <a :href="data.product.link">Download</a>
                 </td>
