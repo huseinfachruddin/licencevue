@@ -112,7 +112,7 @@
   <div class="text-center">
     <v-dialog
       v-model="dialog"
-      width="500"
+      width="1000"
     >
       <v-card>
         <v-card-title class="text-h5 orange lighten-2">
@@ -137,12 +137,8 @@
           v-model="edit.code"
           label="Kode Product"
         ></v-text-field>
-        <v-textarea
-          small
-          outlined
-          v-model="edit.desc"
-          label="Deskripsi"
-        ></v-textarea>
+        <wysiwyg class="ma-2" v-model="edit.desc" />
+
         <v-text-field
           small
           outlined
@@ -189,9 +185,10 @@
 </div>
 </template>
 <script>
+
 import axios from 'axios'
-  export default {
-    data () {
+export default {
+data () {
       return {
         success: false,
         model: null,

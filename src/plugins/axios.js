@@ -5,6 +5,7 @@ import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
 // https://perpustakaanfisip.herokuapp.com
+
 axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || 'https://lisensi.ruasdigital.id';
 axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('token');
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';  

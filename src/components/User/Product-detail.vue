@@ -15,7 +15,7 @@
         <v-list-item-title class="text-h4 mb-1">
           {{data.name}}
         </v-list-item-title>
-        <p overflow>{{data.desc}}</p>
+        <div v-html="data.desc"></div>
       </v-list-item-content>
 
       <v-list-item-avatar

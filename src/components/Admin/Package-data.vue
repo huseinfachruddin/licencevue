@@ -5,7 +5,7 @@
       class="overflow-hidden pa-2 mb-3"
     >
       <h1>{{data.name}}</h1>
-      <p>{{data.desc}}</p>
+      <div v-html="data.desc"></div>
     </v-card>
       <v-card
       class="overflow-hidden"
